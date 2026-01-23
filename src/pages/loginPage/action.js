@@ -46,21 +46,24 @@ export class LoginPage {
     async tapLoginBtn() {
         await test.step('User click login button', async () => {
             await expect(this.locator.loginBtn).toBeVisible();
-            await this.locator.loginBtn.click();
+            await this.locator.loginBtn.click({ timeout: 10000 });
         });
     }
 
     async verifyErrorMessage() {
         await test.step('User verify required field', async () => {
-            await expect(this.locator.emailErrorMessage).toBeVisible({timeout: 10000});
-            await expect(this.locator.passwordErrorMessage).toBeVisible();
+            const errorEmail = this.locator.emailErrorMessage;
+            await expect(errorEmail).toBeVisible({timeout: 10000});
+            const errorPwd = this.locator.passwordErrorMessage;
+            await expect(errorPwd).toBeVisible({timeout: 10000});
         });
     }
 
     async verifySuccessLogin() {
         await test.step('User verify login success', async () => {
-            await expect(this.locator.headerLoginPage).toBeVisible();
-            await expect(this.page).toHaveTitle(/Login/)
+            await expect(this.locator.headerLoginSuccess).toBeVisible();
+            await expect(this.page).toHaveTitle(/MyPage/);
+            await expect(this.page).toHaveURL(/mypage.html/);
         });
     }
 }

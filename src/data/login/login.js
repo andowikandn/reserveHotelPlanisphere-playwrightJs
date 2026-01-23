@@ -10,7 +10,7 @@ export const loginUser = {
     },
 
     valid: {
-        email: 'test@mail.com',
+        email: 'clark@example.com',
         password: 'password'
     }
 }

@@ -1,18 +1,16 @@
 import { test, expect } from '@playwright/test';
-import { ReserveLocator } from './locator.js';
+import { ReserveSpecialLocator } from './locatorSpecialOffer.js';
 
 export class PlanSpecialOfferPage {
     constructor(page) {
         this.page = page;
-        this.locator = new ReserveLocator(page);
+        this.locator = new ReserveSpecialLocator(page);
     }
 
     async verifyTabSpecialOffer() {
         await test.step('User verify special offer page', async () => {
 
-            const heading =
-                this.page.locator('h4', { text: 'Plan with special offers' });
-
+            const heading = this.locator.headerSpecialOffer;
             await expect(heading).toBeVisible();
             await expect(this.page).toHaveURL(/plan-id=0/);
         });
@@ -21,9 +19,7 @@ export class PlanSpecialOfferPage {
     async tapConfirmReserveBtn() {
         await test.step('User click confirmation reserve button', async () => {
 
-            const confirmBtn =
-                this.page.getByRole('button', { text: 'Confirm Reservation' });
-
+            const confirmBtn = this.locator.confirmReservationBtn;
             await expect(confirmBtn).toBeVisible({ timeout: 10000 });
             await confirmBtn.click();
         });
@@ -32,14 +28,14 @@ export class PlanSpecialOfferPage {
     async verifyUsernameRequired() {
         await test.step('User verify username field is required', async () => {
 
-            const username = this.page.locator('#username');
-            await expect(username).toBeVisible({ timeout: 10000 });
-
-            const validationMessage = await username.evaluate(
-                el => el.validationMessage
+            const username = 
+                this.locator.username;
+            
+                const isValid = await username.evaluate(
+                el => el.checkValidity()
             );
 
-            expect(validationMessage).toBe('Please fill out this field.');
+            expect(isValid).toBe(false);
         });
     }
 
@@ -77,7 +73,7 @@ export class PlanSpecialOfferPage {
     async verifyConfirmationRequired() {
         await test.step('User verify username field is required', async () => {
 
-            const confirmation = this.page.locator('#contact');
+            const confirmation = this.locator.contact;
 
             await expect(confirmation).toBeVisible({ timeout: 10000 });
             await expect(confirmation).toHaveAttribute('required', '');
@@ -97,14 +93,14 @@ export class PlanSpecialOfferPage {
     async verifyEmailRequired() {
         await test.step('User verify email field is required', async () => {
 
-            const email = this.page.locator('#email');
+            const email = this.locator.email;
             await expect(email).toBeVisible();
 
             const validationMessage = await email.evaluate(
-                el => el.validationMessage
+                el => el.checkValidity()
             );
 
-            expect(validationMessage).toBe('Please fill out this field.');
+            expect(validationMessage).toBe(false);
         });
 
     }
@@ -117,15 +113,59 @@ export class PlanSpecialOfferPage {
 
             await expect(invalidEmail).toBeVisible();
             await expect(invalidEmail).toHaveText('Please enter a non-empty email address.');
-
         });
     }
 
     async verifyEmailValid() {
         await test.step('User verify email is valid', async () => {
+
             const invalidEmail =
                 this.page.locator('#email + .invalid-feedback');
+
             await expect(invalidEmail).toBeHidden();
+        });
+    }
+
+    async fillTelephone(tel) {
+        await test.step('User fill confirmation contact telephone', async () => {
+
+            const inputTel = this.locator.telephone;
+
+            await inputTel.fill('');
+            await inputTel.fill(tel);
+            await expect(inputTel).toHaveValue(tel);
+        });
+    }
+
+    async verifyTelRequired() {
+        await test.step('User verify telephone field is required', async () => {
+
+            const inputTel = this.locator.telephone;
+            await expect(inputTel).toBeVisible();
+
+            const validationMessage = await inputTel.evaluate(
+                el => el.checkValidity()
+            );
+
+            expect(validationMessage).toBe(false);
+        });
+    }
+
+    async verifyTelInvalid() {
+        await test.step('User verify telephone is invalid', async () => {
+
+            const inputTel = this.locator.telephone;
+            const isValid = await inputTel.evaluate(el => el.checkValidity());
+            expect(isValid).toBeFalsy();
+        });
+    }
+
+    async verifyTelValid() {
+        await test.step('User verify telephone is valid', async () => {
+
+            const inputTel = this.locator.telephone;
+            const isValid = await inputTel.evaluate(el => el.checkValidity());
+            expect(isValid).toBeTruthy();
         });
     }
 
@@ -140,19 +180,17 @@ export class PlanSpecialOfferPage {
     async fillName(name) {
         await test.step('User fill username', async () => {
 
-            const usernameInput =
-                this.page.locator('#username');
+            const usernameInput = this.locator.username;
 
             await usernameInput.fill(name, { timeout: 10000 });
             await expect(usernameInput).toHaveValue(name);
         });
     }
 
-    async fillConfirmation(contact) {
+    async fillConfirmationContact(contact) {
         await test.step(`User select a confirmation option ${contact}`, async () => {
 
-            const confirmationOption =
-                this.page.locator('#contact')
+            const confirmationOption = this.locator.contact;
 
             await confirmationOption.selectOption(contact);
             await expect(confirmationOption).toHaveValue(contact, { timeout: 10000 });
@@ -161,9 +199,8 @@ export class PlanSpecialOfferPage {
 
     async fillComment(comment) {
         await test.step(`User fill comment: ${comment}`, async () => {
-            
-            const inputComment = 
-                this.page.locator('textarea#comment');
+
+            const inputComment = this.locator.comment;
 
             await expect(inputComment).toBeVisible({ timeout: 10000 });
             await inputComment.fill(comment);
@@ -174,10 +211,7 @@ export class PlanSpecialOfferPage {
     async verifyConfirmationSpecialOffer() {
         await test.step('User verify confirmation plan speciall offers', async () => {
 
-            const confirmSpecial =
-                this.page.getByRole('heading', {
-                    name: 'Confirm Reservation'
-                });
+            const confirmSpecial = this.locator.headerConfirmSpecial;
 
             await expect(confirmSpecial).toBeVisible({ timeout: 10000 });
             await expect(this.page).toHaveURL(/confirm/);
@@ -187,8 +221,7 @@ export class PlanSpecialOfferPage {
     async tapSubmitReservationBtn() {
         await test.step('User click submit reservation button', async () => {
 
-            const submitReserveBtn =
-                this.page.locator('button[data-target="#success-modal"]');
+            const submitReserveBtn = this.locator.submitReservationBtn;
 
             expect(submitReserveBtn).toBeVisible();
             await submitReserveBtn.click({ timeout: 10000 });
@@ -198,9 +231,7 @@ export class PlanSpecialOfferPage {
     async verifySubmitReservation() {
         await test.step('User verify view popup modal reservation', async () => {
 
-            const verifyModalReserve =
-                this.page.getByRole('heading', { name: 'Thank you for reserving.' });
-
+            const verifyModalReserve = this.locator.verifyConfirmModal;
             expect(verifyModalReserve).toBeVisible({ timeout: 10000 });
 
             const bodyModal =
@@ -214,8 +245,7 @@ export class PlanSpecialOfferPage {
     async tapCloseBtn() {
         await test.step('User click close modal button', async () => {
 
-            const closeBtn =
-                this.page.locator('button.btn-success[data-dismiss="modal"]');
+            const closeBtn = this.locator.closeBtnModal;
 
             expect(closeBtn).toBeVisible({ timeout: 10000 });
             await closeBtn.click();

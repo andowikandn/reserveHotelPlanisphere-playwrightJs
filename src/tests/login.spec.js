@@ -1,6 +1,7 @@
 import { test } from '@playwright/test';
 import { LoginPage } from '../pages/loginPage/action.js';
 import { loginUser } from '../data/login/login.js';
+import { LogoutPage } from '../pages/logoutPage/action.js';
 
 test.describe('Login Page', () => {
     test('Login error required field', async ({ page }) => {
@@ -24,10 +25,12 @@ test.describe('Login Page', () => {
 
     test('Login success message valid field', async ({ page }) => {
         const action = new LoginPage(page);
+        const logoutBtn = new LogoutPage(page);
         await action.goto();
         await action.fillEmail(loginUser.valid.email);
         await action.fillPassword(loginUser.valid.password);
         await action.tapLoginBtn();
         await action.verifySuccessLogin();
+        await logoutBtn.tapLogoutMenuBtn();
     });
 });

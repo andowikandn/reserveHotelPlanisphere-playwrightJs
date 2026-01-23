@@ -1,7 +1,7 @@
 export class LoginLocator {
   constructor(page) {
     this.headerLoginPage = page.locator('h2:has-text("Login")');
-    this.headerLoginSuccess = page.locator('h2:has-text("My Page")');
+    this.headerLoginSuccess = page.locator('h2:has-text("MyPage")');
     this.loginMenuBtn = page.locator('a[href="./login.html"]');
     this.inputEmail = page.locator('#email');
     this.inputPassword = page.locator('#password');

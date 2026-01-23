@@ -4,18 +4,19 @@ import { ReservePage } from '../pages/reservePage/reservePage.js';
 
 test.describe('Reserve Page', () => {
     test('Plan special offer page with contact by None', async ({ page }) => {
-        const reservePage = new ReservePage(page);
+
+        const reservePage = new ReservePage(page);        
         await reservePage.goto();
 
         const specialOfferPopup = await reservePage.tapPlanSpecialOffer();
         const reserveSpecialPage = new PlanSpecialOfferPage(specialOfferPopup);
-
+        
         await reserveSpecialPage.verifyTabSpecialOffer();
         await reserveSpecialPage.tapConfirmReserveBtn();
         await reserveSpecialPage.verifyUsernameRequired();
         await reserveSpecialPage.verifyConfirmationRequired();
         await reserveSpecialPage.fillName('Bram');
-        await reserveSpecialPage.fillConfirmation('no');
+        await reserveSpecialPage.fillConfirmationContact('no');
         await reserveSpecialPage.fillComment('The comment');
         await reserveSpecialPage.tapConfirmReserveBtn();
         await reserveSpecialPage.verifyConfirmationSpecialOffer();
@@ -29,8 +30,7 @@ test.describe('Reserve Page', () => {
         await reservePage.goto();
 
         const specialOfferPopup = await reservePage.tapPlanSpecialOffer();
-        const reserveSpecialPage = 
-            new PlanSpecialOfferPage(specialOfferPopup);
+        const reserveSpecialPage = new PlanSpecialOfferPage(specialOfferPopup);
 
         await reserveSpecialPage.verifyTabSpecialOffer();
         await reserveSpecialPage.fillStay('2');
@@ -40,7 +40,7 @@ test.describe('Reserve Page', () => {
         await reserveSpecialPage.verifyUsernameRequired();
         await reserveSpecialPage.verifyConfirmationRequired();
         await reserveSpecialPage.fillName('Bram');
-        await reserveSpecialPage.fillConfirmation('email');
+        await reserveSpecialPage.fillConfirmationContact('email');
         await reserveSpecialPage.tapConfirmReserveBtn();
         await reserveSpecialPage.verifyEmailRequired();
         await reserveSpecialPage.fillComment('The comment');
@@ -50,6 +50,40 @@ test.describe('Reserve Page', () => {
         await reserveSpecialPage.fillEmail('halo.@mail.com');
         await reserveSpecialPage.verifyEmailValid();
         await reserveSpecialPage.tapConfirmReserveBtn();
+        await reserveSpecialPage.verifyConfirmationSpecialOffer();
+        await reserveSpecialPage.tapSubmitReservationBtn();
+        await reserveSpecialPage.verifySubmitReservation();
+        await reserveSpecialPage.tapCloseBtn();
+    });
+
+    test('Plan special offer page with contact by Telephone', async ({ page }) => {
+        const reservePage = new ReservePage(page);
+        await reservePage.goto();
+
+        const specialOfferPopup = await reservePage.tapPlanSpecialOffer();
+        const reserveSpecialPage = new PlanSpecialOfferPage(specialOfferPopup);
+
+        await reserveSpecialPage.verifyTabSpecialOffer();
+        await reserveSpecialPage.fillStay('2');
+        await reserveSpecialPage.fillGuest('2');
+        await reserveSpecialPage.additionalPlan(['Breakfast','Sightseeing']);
+        await reserveSpecialPage.tapConfirmReserveBtn();
+        await reserveSpecialPage.verifyUsernameRequired();
+        await reserveSpecialPage.verifyConfirmationRequired();
+        await reserveSpecialPage.fillName('Bram');
+        await reserveSpecialPage.fillConfirmationContact('tel');
+        await reserveSpecialPage.fillComment('The comment');
+        await reserveSpecialPage.tapConfirmReserveBtn();
+        await reserveSpecialPage.verifyTelRequired();
+
+        await reserveSpecialPage.fillTelephone('12345');
+        await reserveSpecialPage.verifyTelInvalid();
+        await reserveSpecialPage.tapConfirmReserveBtn();
+
+        await reserveSpecialPage.fillTelephone('12345678901');
+        await reserveSpecialPage.verifyTelValid();
+        await reserveSpecialPage.tapConfirmReserveBtn();
+        
         await reserveSpecialPage.verifyConfirmationSpecialOffer();
         await reserveSpecialPage.tapSubmitReservationBtn();
         await reserveSpecialPage.verifySubmitReservation();

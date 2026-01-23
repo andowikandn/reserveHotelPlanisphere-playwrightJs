@@ -14,9 +14,11 @@ export default defineConfig({
     launchOptions: { 
       args: ['--start-maximized'],
     trace: 'on-first-retry',
+    // slowMo: 10,
   }
 },
   projects: [
+    
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },

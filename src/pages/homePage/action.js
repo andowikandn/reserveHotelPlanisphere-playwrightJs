@@ -7,7 +7,7 @@ export class HomePage {
     this.headerTitle = page.locator('h2:has-text("Notice")');
   }
 
-  async goto() {
+  async gotoHomeUrl() {
     await test.step('Navigate to base url home', async () => {
       await this.page.goto(URLS.BASE, { waitUntil: 'domcontentloaded' });
     });      

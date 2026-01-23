@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { ReserveLocator } from './locator.js';
+import { ReserveLocator } from './locatorReserve.js';
 import { URLS } from '../../../utils/env.js';
 
 export class ReservePage {
@@ -13,6 +13,14 @@ export class ReservePage {
             
             await this.page.goto(URLS.RESERVE, { waitUntil: 'domcontentloaded' });
             await expect(this.locator.headerReservePage).toBeVisible();
+            await expect(this.page).toHaveURL(/plans.html/);
+        });
+    }
+
+    async tapReserveMenuBtn() {
+        await test.step('User click reserve menu button', async () => {
+            await expect(this.locator.reserveMenuBtn).toBeVisible({timeout:10000});
+            await this.locator.reserveMenuBtn.click();
             await expect(this.page).toHaveURL(/plans.html/);
         });
     }

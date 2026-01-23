@@ -1,6 +1,6 @@
-export class ReserveLocator {
+export class ReserveSpecialLocator {
     constructor(page) {
-        this.reserveMenu = page.locator('a[href="./plans.thtml"]');
+        this.reserveMenuBtn = page.locator('a[href="./plans.html"]');
         this.headerReservePage = page.locator('h2:has-text("Plans")');
         this.specialOfferBtn = page.locator('a[href="./reserve.html?plan-id=0"]');
         this.headerSpecialOffer = page.locator('h4:has-text("Plan with special offers")');
@@ -11,15 +11,14 @@ export class ReserveLocator {
         this.checkEarlyCheckIn = page.locator('#early-check-in');
         this.checkSightSeeing = page.locator('#sightseeing');
         this.username = page.locator('#username');
-        // Please fill out this field.
         this.contact = page.locator('#contact');
-        // Choose one
         this.email = page.locator('#email');
-        // Please fill out this field.z
-        // Please enter a non-empty email address.
         this.telephone = page.locator('#tel');
-        // Please match the requested format.
-        // Please enter 11-digit number. Ex: 01133335555
+        this.comment = page.locator('#comment');
         this.confirmReservationBtn = page.locator('#submit-button');
+        this.headerConfirmSpecial = page.getByRole('heading', { name: 'Confirm Reservation' });
+        this.submitReservationBtn = page.locator('button[data-target="#success-modal"]');
+        this.verifyConfirmModal = page.getByRole('heading', { name: 'Thank you for reserving.'});
+        this.closeBtnModal = page.locator('button.btn-success[data-dismiss="modal"]');
     }
 }
