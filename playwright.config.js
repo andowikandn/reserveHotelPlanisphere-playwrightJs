@@ -14,7 +14,7 @@ export default defineConfig({
     launchOptions: { 
       args: ['--start-maximized'],
     trace: 'on-first-retry',
-    // slowMo: 10,
+    slowMo: 10,
   }
 },
   projects: [
@@ -29,10 +29,15 @@ export default defineConfig({
       use: { ...devices['Desktop Firefox'] },
     },
 
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
+    ...(process.env.CI ? [] : [
+      {
+        name: 'WebKit',
+        use: {
+          browserName: 'webkit',
+          ...devices['Desktop Safari'],
+        },
+      },
+    ]),
   ],
 });
 

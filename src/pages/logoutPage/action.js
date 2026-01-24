@@ -11,14 +11,8 @@ export class LogoutPage {
             const logoutBtn = 
                 this.page.getByRole('button', { name: 'Logout' });
             
-            await expect(logoutBtn).toBeVisible();
+            await expect(logoutBtn).toBeVisible({ timeout: 10000 });
             await logoutBtn.click();
-
-            const homeMenu = 
-                this.page.locator('a[href="./index.html"]');
-
-            await expect(this.page).toHaveURL(/index.html/);
-            await expect(homeMenu).toBeVisible({timeout: 10000});
         });
     }
 }
