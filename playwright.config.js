@@ -14,7 +14,7 @@ export default defineConfig({
     launchOptions: { 
       args: ['--start-maximized'],
     trace: 'on-first-retry',
-    slowMo: 10,
+    // slowMo: 10,
   }
 },
   projects: [
