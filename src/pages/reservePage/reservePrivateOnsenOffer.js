@@ -1,21 +1,19 @@
 import { test, expect } from '@playwright/test';
-import { ReserveSpecialLocator } from './locatorSpecialOffer.js';
-import { ReserveLocator } from './locatorReserve.js';
+import { ReservePrivateOnsenLocator } from './locatorPrivateOnsenOffer.js';
 
-export class PlanSpecialOfferPage {
+export class PlanPrivateOnsenOfferPage {
     constructor(page) {
         this.page = page;
-        this.locator = new ReserveLocator(page);
-        this.locator = new ReserveSpecialLocator(page);
+        this.locator = new ReservePrivateOnsenLocator(page);
     }
 
-    async verifyTabSpecialOffer() {
-        await test.step('User verify special offer page', async () => {
+    async verifyTabPrivateOnsenOffer() {
+        await test.step('User verify private onsen offer page', async () => {
 
-            const heading = this.locator.headerSpecialOffer;
+            const heading = this.locator.headerPrivateOnsenOffer;
 
             await expect(heading).toBeVisible();
-            await expect(this.page).toHaveURL(/plan-id=0/);
+            await expect(this.page).toHaveURL(/plan-id=7/);
         });
     }
 
@@ -217,10 +215,10 @@ export class PlanSpecialOfferPage {
         });
     }
 
-    async verifyConfirmationSpecialOffer() {
-        await test.step('User verify confirmation plan speciall offers', async () => {
+    async verifyConfirmationPrivateOnsenOffer() {
+        await test.step('User verify confirmation plan private onsen offers', async () => {
 
-            const confirmSpecial = this.locator.headerConfirmSpecial;
+            const confirmSpecial = this.locator.headerConfirmPrivateOnsen;
 
             await expect(confirmSpecial).toBeVisible({ timeout: 10000 });
             await expect(this.page).toHaveURL(/confirm/);

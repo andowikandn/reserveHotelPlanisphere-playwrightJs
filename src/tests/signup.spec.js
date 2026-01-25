@@ -1,6 +1,8 @@
 import { test } from '@playwright/test';
 import { SignUpPage } from '../pages/signupPage/signup.js';
 import { signupUser } from '../data/signup/signup.js';
+import { PlanSpecialOfferPage } from '../pages/reservePage/reserveSpecialOffer.js';
+import { ReservePage } from '../pages/reservePage/reservePage.js';
 
 test.describe('SignUp Page Validation Required and Invalid Field',() => {    
     test('User signup with required field error message', async ({ page }) => {
@@ -66,7 +68,6 @@ test.describe('SignUp Page Validation Required and Invalid Field',() => {
         await action.verifyInvalidTel();
         await action.fillTel(signupUser.tel.valid);
         await action.verifyValidTel();
-        
     });
 });
 
@@ -74,12 +75,14 @@ test.describe('SignUp Page Filling Out Signup Success MyPage',() => {
     test('User filling out signup field', async ({ page }) => {
 
         const action = new SignUpPage(page);
+        const reservePage = new ReservePage(page);
 
         await action.goto();
         await action.fillEmail(signupUser.valid.email);
         await action.fillPassword(signupUser.valid.password);
         await action.fillPwdConfirm(signupUser.valid.pwdConfirm);
         await action.fillName(signupUser.username.name);
+        await action.selectNormalMembership();
         await action.fillAddress(signupUser.address.place);
         await action.fillTel(signupUser.tel.valid);
         await action.selectGender(signupUser.gender.selected);
@@ -87,6 +90,24 @@ test.describe('SignUp Page Filling Out Signup Success MyPage',() => {
         await action.checkReceiveNotification();
         await action.tapSignupBtn();
         await action.verifySignupMyPage();
+
+        await reservePage.tapReserveMenuBtn();
+        const specialOfferPopup = await reservePage.tapPlanSpecialOffer();
+        const reserveSpecialPage = new PlanSpecialOfferPage(specialOfferPopup);
+
+        await reserveSpecialPage.verifyTabSpecialOffer();
+        await reserveSpecialPage.fillStay('2');
+        await reserveSpecialPage.fillGuest('2');
+        await reserveSpecialPage.additionalPlan(['Breakfast','Sightseeing']);
+        await reserveSpecialPage.fillName('Bram');
+        await reserveSpecialPage.fillConfirmationContact('tel');
+        await reserveSpecialPage.fillComment('The comment');
+        await reserveSpecialPage.tapConfirmReserveBtn();
+        
+        await reserveSpecialPage.verifyConfirmationSpecialOffer();
+        await reserveSpecialPage.tapSubmitReservationBtn();
+        await reserveSpecialPage.verifySubmitReservation();
+        await reserveSpecialPage.tapCloseBtn();
     });
 
 });

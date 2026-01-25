@@ -1,21 +1,19 @@
 import { test, expect } from '@playwright/test';
-import { ReserveSpecialLocator } from './locatorSpecialOffer.js';
-import { ReserveLocator } from './locatorReserve.js';
+import { ReserveBeautySalonLocator } from './locatorBeautySalonOffer.js';
 
-export class PlanSpecialOfferPage {
+export class PlanBeautySalonPage {
     constructor(page) {
         this.page = page;
-        this.locator = new ReserveLocator(page);
-        this.locator = new ReserveSpecialLocator(page);
+        this.locator = new ReserveBeautySalonLocator(page);
     }
 
-    async verifyTabSpecialOffer() {
-        await test.step('User verify special offer page', async () => {
+    async verifyTabBeautySalonOffer() {
+        await test.step('User verify beauty salon offer page', async () => {
 
-            const heading = this.locator.headerSpecialOffer;
+            const heading = this.locator.headerBeautySalonOffer;
 
             await expect(heading).toBeVisible();
-            await expect(this.page).toHaveURL(/plan-id=0/);
+            await expect(this.page).toHaveURL(/plan-id=6/);
         });
     }
 
@@ -23,7 +21,7 @@ export class PlanSpecialOfferPage {
         await test.step('User click confirmation reserve button', async () => {
 
             const confirmBtn = this.locator.confirmReservationBtn;
-
+            
             await expect(confirmBtn).toBeVisible({ timeout: 10000 });
             await confirmBtn.click();
         });
@@ -175,15 +173,12 @@ export class PlanSpecialOfferPage {
         });
     }
 
-    async backToMainPage(mainPage) {
-        await test.step('User move tab special offer window', async () => {
+    async backToMainPage() {
+        await test.step('User move tab main tab window', async () => {
 
-            await this.page.close();
-            await mainPage.bringToFront();
-            await mainPage.waitForLoadState('load');
+            await this.page.bringToFront();
+            await expect(this.locator.headerReservePage).toBeVisible();
         });
-        
-        return mainPage;
     }
 
     async fillName(name) {
@@ -217,12 +212,12 @@ export class PlanSpecialOfferPage {
         });
     }
 
-    async verifyConfirmationSpecialOffer() {
-        await test.step('User verify confirmation plan speciall offers', async () => {
+    async verifyConfirmationBeautySalonOffer() {
+        await test.step('User verify confirmation plan beauty salon offers', async () => {
 
-            const confirmSpecial = this.locator.headerConfirmSpecial;
+            const confirmBeautySalon = this.locator.headerConfirmBeautySalon;
 
-            await expect(confirmSpecial).toBeVisible({ timeout: 10000 });
+            await expect(confirmBeautySalon).toBeVisible({ timeout: 10000 });
             await expect(this.page).toHaveURL(/confirm/);
         });
     }

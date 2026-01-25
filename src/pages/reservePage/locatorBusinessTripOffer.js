@@ -1,6 +1,6 @@
-export class ReserveSpecialLocator {
+export class ReserveBusinessTripLocator {
     constructor(page) {
-        this.headerSpecialOffer = page.locator('h4:has-text("Plan with special offers")');
+        this.headerBusinessTripOffer = page.locator('h4:has-text("Business trip")');
         this.inputDate = page.locator('#date');
         this.inputStay = page.locator('#term');
         this.inputGuest = page.locator('#head-count');
@@ -13,7 +13,7 @@ export class ReserveSpecialLocator {
         this.telephone = page.locator('#tel');
         this.comment = page.locator('#comment');
         this.confirmReservationBtn = page.locator('#submit-button');
-        this.headerConfirmSpecial = page.getByRole('heading', { name: 'Confirm Reservation' });
+        this.headerConfirmBusinessTrip = page.getByRole('heading', { name: 'Confirm Reservation' });
         this.submitReservationBtn = page.locator('button[data-target="#success-modal"]');
         this.verifyConfirmModal = page.getByRole('heading', { name: 'Thank you for reserving.'});
         this.closeBtnModal = page.locator('button.btn-success[data-dismiss="modal"]');

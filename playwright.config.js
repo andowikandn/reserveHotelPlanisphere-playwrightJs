@@ -10,15 +10,15 @@ export default defineConfig({
   reporter: [['list'], ['html', { outputFolder: 'playwright-report' }]],
   use: {
     headless: true,
-    viewport: null, 
-    launchOptions: { 
+    viewport: null,
+    launchOptions: {
       args: ['--start-maximized'],
-    trace: 'on-first-retry',
-    // slowMo: 10,
-  }
-},
+      trace: 'on-first-retry',
+      slowMo: 0,
+    }
+  },
   projects: [
-    
+
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },

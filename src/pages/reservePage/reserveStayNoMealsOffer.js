@@ -1,21 +1,19 @@
 import { test, expect } from '@playwright/test';
-import { ReserveSpecialLocator } from './locatorSpecialOffer.js';
-import { ReserveLocator } from './locatorReserve.js';
+import { ReserveStayWithoutMealsLocator } from './locatorStayNoMealsOffer.js';
 
-export class PlanSpecialOfferPage {
+export class PlanStayWitouthMealsPage {
     constructor(page) {
         this.page = page;
-        this.locator = new ReserveLocator(page);
-        this.locator = new ReserveSpecialLocator(page);
+        this.locator = new ReserveStayWithoutMealsLocator(page);
     }
 
-    async verifyTabSpecialOffer() {
-        await test.step('User verify special offer page', async () => {
-
-            const heading = this.locator.headerSpecialOffer;
+    async verifyTabStayWithoutMealsOffer() {
+        await test.step('User verify stay with meals offer page', async () => {
+            
+            const heading = this.locator.headerStayWithoutMealsOffer;
 
             await expect(heading).toBeVisible();
-            await expect(this.page).toHaveURL(/plan-id=0/);
+            await expect(this.page).toHaveURL(/plan-id=4/);
         });
     }
 
@@ -23,7 +21,6 @@ export class PlanSpecialOfferPage {
         await test.step('User click confirmation reserve button', async () => {
 
             const confirmBtn = this.locator.confirmReservationBtn;
-
             await expect(confirmBtn).toBeVisible({ timeout: 10000 });
             await confirmBtn.click();
         });
@@ -112,11 +109,13 @@ export class PlanSpecialOfferPage {
     async verifyEmailInvalid() {
         await test.step('User verify email invalid', async () => {
 
-            const invalidEmail =
-                this.page.locator('#email + .invalid-feedback');
+            const invalidEmail = this.locator.email;
+                // this.page.locator('#email + .invalid-feedback');
 
-            await expect(invalidEmail).toBeVisible();
-            await expect(invalidEmail).toHaveText('Please enter a non-empty email address.');
+            const isValid = await invalidEmail.evaluate(el => el.checkValidity());
+            expect(isValid).toBeFalsy();
+                // await expect(invalidEmail).toHaveText('Please enter a non-empty email address.');
+                // await expect(invalidEmail).toBeVisible();
         });
     }
 
@@ -175,15 +174,12 @@ export class PlanSpecialOfferPage {
         });
     }
 
-    async backToMainPage(mainPage) {
+    async backToMainPage() {
         await test.step('User move tab special offer window', async () => {
 
-            await this.page.close();
-            await mainPage.bringToFront();
-            await mainPage.waitForLoadState('load');
+            await this.page.bringToFront();
+            await expect(this.locator.headerReservePage).toBeVisible();
         });
-        
-        return mainPage;
     }
 
     async fillName(name) {
@@ -217,10 +213,10 @@ export class PlanSpecialOfferPage {
         });
     }
 
-    async verifyConfirmationSpecialOffer() {
+    async verifyConfirmationStayWithoutMealsOffer() {
         await test.step('User verify confirmation plan speciall offers', async () => {
 
-            const confirmSpecial = this.locator.headerConfirmSpecial;
+            const confirmSpecial = this.locator.headerConfirmStayWithoutMeals;
 
             await expect(confirmSpecial).toBeVisible({ timeout: 10000 });
             await expect(this.page).toHaveURL(/confirm/);

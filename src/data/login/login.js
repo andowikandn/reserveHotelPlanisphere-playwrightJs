@@ -9,8 +9,13 @@ export const loginUser = {
         password: 'pass'
     },
 
-    valid: {
+    validUserPremium: {
         email: 'clark@example.com',
         password: 'password'
+    },
+
+    validUserNormal: {
+        email: 'diana@example.com',
+        password: 'pass1234'
     }
 }

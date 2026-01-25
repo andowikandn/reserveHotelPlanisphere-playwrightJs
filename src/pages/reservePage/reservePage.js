@@ -41,4 +41,72 @@ export class ReservePage {
         
         return this.specialOfferPage;
     }
+
+    async tapPlanStayWithoutMealsOffer() {
+        await test.step('User click reserve room button plan stay with meals offer', async () => {
+
+            await expect(this.locator.stayWithoutMealsOfferBtn).toBeVisible();
+
+            const [popup] = await Promise.all([
+                this.page.waitForEvent('popup'),
+                this.locator.stayWithoutMealsOfferBtn.click()
+            ]);
+
+            await popup.waitForLoadState('domcontentloaded');
+            this.stayWithoutMealsPage = popup;
+        });
+
+        return this.stayWithoutMealsPage;
+    }
+
+    async tapPlanBusinessTrip() {
+        await test.step('User click reserve room button plan business trip offer', async () => {
+
+            await expect(this.locator.businessTripOfferBtn).toBeVisible();
+
+            const [popup] = await Promise.all([
+                this.page.waitForEvent('popup'),
+                this.locator.businessTripOfferBtn.click()
+            ]);
+
+            await popup.waitForLoadState('domcontentloaded');
+            this.businessTripPage = popup;
+        });
+
+        return this.businessTripPage;
+    }
+
+    async tapPlanBeautySalon() {
+        await test.step('User click reserve room button plan business trip offer', async () => {
+
+            await expect(this.locator.withBeautySalonOfferBtn).toBeVisible();
+
+            const [popup] = await Promise.all([
+                this.page.waitForEvent('popup'),
+                this.locator.withBeautySalonOfferBtn.click()
+            ]);
+
+            await popup.waitForLoadState('domcontentloaded');
+            this.beautySalonPage = popup;
+        });
+
+        return this.beautySalonPage;
+    }
+
+    async tapPlanPrivateOnsen() {
+        await test.step('User click reserve room button plan business trip offer', async () => {
+
+            await expect(this.locator.withPrivateOnsenOfferBtn).toBeVisible();
+
+            const [popup] = await Promise.all([
+                this.page.waitForEvent('popup'),
+                this.locator.withPrivateOnsenOfferBtn.click()
+            ]);
+
+            await popup.waitForLoadState('domcontentloaded');
+            this.privateOnsenPage = popup;
+        });
+
+        return this.privateOnsenPage;
+    }
 }

@@ -1,21 +1,19 @@
 import { test, expect } from '@playwright/test';
-import { ReserveSpecialLocator } from './locatorSpecialOffer.js';
-import { ReserveLocator } from './locatorReserve.js';
+import { ReserveBusinessTripLocator } from './locatorBusinessTripOffer.js';
 
-export class PlanSpecialOfferPage {
+export class PlanBusinessTripPage {
     constructor(page) {
         this.page = page;
-        this.locator = new ReserveLocator(page);
-        this.locator = new ReserveSpecialLocator(page);
+        this.locator = new ReserveBusinessTripLocator(page);
     }
 
-    async verifyTabSpecialOffer() {
-        await test.step('User verify special offer page', async () => {
-
-            const heading = this.locator.headerSpecialOffer;
+    async verifyTabBusinessTripOffer() {
+        await test.step('User verify business trip offer page', async () => {
+            
+            const heading = this.locator.headerBusinessTripOffer;
 
             await expect(heading).toBeVisible();
-            await expect(this.page).toHaveURL(/plan-id=0/);
+            await expect(this.page).toHaveURL(/plan-id=5/);
         });
     }
 
@@ -175,15 +173,12 @@ export class PlanSpecialOfferPage {
         });
     }
 
-    async backToMainPage(mainPage) {
+    async backToMainPage() {
         await test.step('User move tab special offer window', async () => {
 
-            await this.page.close();
-            await mainPage.bringToFront();
-            await mainPage.waitForLoadState('load');
+            await this.page.bringToFront();
+            await expect(this.locator.headerReservePage).toBeVisible();
         });
-        
-        return mainPage;
     }
 
     async fillName(name) {
@@ -217,10 +212,10 @@ export class PlanSpecialOfferPage {
         });
     }
 
-    async verifyConfirmationSpecialOffer() {
+    async verifyConfirmationBusinessTripOffer() {
         await test.step('User verify confirmation plan speciall offers', async () => {
 
-            const confirmSpecial = this.locator.headerConfirmSpecial;
+            const confirmSpecial = this.locator.headerConfirmBusinessTrip;
 
             await expect(confirmSpecial).toBeVisible({ timeout: 10000 });
             await expect(this.page).toHaveURL(/confirm/);

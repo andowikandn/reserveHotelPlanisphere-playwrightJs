@@ -6,13 +6,13 @@ export const signupUser = {
     },
 
     valid: {
-        email: 'test1@mail.com',
-        password: 'password1',
-        pwdConfirm: 'password1'
+        email: 'test2@mail.com',
+        password: 'password2',
+        pwdConfirm: 'password2'
     },
 
     username: {
-        name: 'test1 user'
+        name: 'test2 user'
     },
 
     tel: {
@@ -35,7 +35,7 @@ export const signupUser = {
             'female',
             'other'
         ],
-        selected: 'female' 
+        selected: 'male' 
     }
 }
 

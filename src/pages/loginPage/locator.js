@@ -6,7 +6,5 @@ export class LoginLocator {
     this.inputEmail = page.locator('#email');
     this.inputPassword = page.locator('#password');
     this.loginBtn = page.locator('#login-button');
-    this.emailErrorMessage = page.locator('#email-message');
-    this.passwordErrorMessage = page.locator('#password-message');
   }
 }

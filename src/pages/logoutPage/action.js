@@ -6,13 +6,15 @@ export class LogoutPage {
     }
 
     async tapLogoutMenuBtn() {
-        await test.step('User click logout menut button', async () => {
+        await test.step('User click logout menu button', async () => {
             
             const logoutBtn = 
                 this.page.getByRole('button', { name: 'Logout' });
             
             await expect(logoutBtn).toBeVisible({ timeout: 10000 });
             await logoutBtn.click();
+
+            await expect(this.page).toHaveURL(/hotel-example-site/, { timeout: 10000 });
         });
     }
 }

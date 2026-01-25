@@ -138,7 +138,7 @@ export class SignUpPage {
         });
     }
 
-    async tapSelectMembership() {
+    async selectNormalMembership() {
         await test.step('User select Membership user', async () => {
 
             const memberShip = this.locator.selectMembership;
@@ -243,7 +243,6 @@ export class SignUpPage {
 
             await genderOption.selectOption(gender);
             await expect(genderOption).toBeVisible({ timeout: 10000 });
-            // option: I do not answer / male / female / and other
         });
     }
 
@@ -282,8 +281,8 @@ export class SignUpPage {
         await test.step('User verify signup success direct to mypage', async () => {
 
             const myPage = this.locator.signupMyPage;
-            await expect(this.page).toHaveURL(/mypage\.html/, { timeout: 10000 });
             await expect(myPage).toBeVisible({ timeout: 10000 });
+            await expect(this.page).toHaveURL(/mypage.html/);
 
 
             const dateOfBirth =

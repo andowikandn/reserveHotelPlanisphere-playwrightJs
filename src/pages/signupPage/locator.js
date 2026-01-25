@@ -6,8 +6,8 @@ export class SignupLocator {
         this.inputPassword = page.locator('#password');
         this.inputPwdConfirm = page.locator('#password-confirmation');
         this.inputName =  page.locator('#username');
-        this.selectMembership = page.getByRole('radio', { name: 'Membership' });
-        this.selectPremMembership = page.getByRole('radio', { name: 'PREMIUM Membership' });
+        this.selectMembership = page.locator('#rank-normal');
+        this.selectPremMembership = page.locator('rank-premium');
         this.inputAddress = page.locator('#address');
         this.inputGender = page.locator('#gender');
         this.inputBirthDay = page.locator('#birthday');
