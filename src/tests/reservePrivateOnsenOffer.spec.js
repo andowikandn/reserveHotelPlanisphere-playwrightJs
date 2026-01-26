@@ -74,4 +74,27 @@ test.describe('Reserve with Private Onsen Page', () => {
         await reservePrivateOnsenPage.tapCloseBtn();
     });
 
+    test('Plan with private onsen page with contact by Telephone', async ({ page }) => {
+
+        const reservePage = new ReservePage(page);
+        await reservePage.goto();
+
+        const privateOnsenPopup = await reservePage.tapPlanPrivateOnsen();
+        const reservePrivateOnsenPage = new PlanPrivateOnsenOfferPage(privateOnsenPopup);
+
+        await reservePrivateOnsenPage.verifyTabPrivateOnsenOffer();
+        await reservePrivateOnsenPage.fillStay('2');
+        await reservePrivateOnsenPage.fillGuest('2');
+        await reservePrivateOnsenPage.additionalPlan(['Early check-in','Sightseeing']);
+        await reservePrivateOnsenPage.fillName('Bram');
+        await reservePrivateOnsenPage.fillConfirmationContact('tel');
+        await reservePrivateOnsenPage.fillTelephone('12345123450');
+        await reservePrivateOnsenPage.fillComment('The comment');
+        await reservePrivateOnsenPage.tapConfirmReserveBtn();
+        
+        await reservePrivateOnsenPage.verifyConfirmationPrivateOnsenOffer();
+        await reservePrivateOnsenPage.tapSubmitReservationBtn();
+        await reservePrivateOnsenPage.verifySubmitReservation();
+        await reservePrivateOnsenPage.tapCloseBtn();
+    });
 });

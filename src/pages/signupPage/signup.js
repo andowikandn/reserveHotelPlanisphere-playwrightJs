@@ -18,6 +18,17 @@ export class SignUpPage {
         });
     }
 
+    async verifySignupPage() {
+        await test.step('User verify signup page', async () => {
+            
+            const heading = 
+                this.locator.headerSignup;
+
+            await expect(heading).toBeVisible();
+            await expect(this.page).toHaveURL(/signup.html/);
+        });
+    }
+
     async tapSignUpMenuBtn() {
         await test.step('User click signup menu button', async () => {
 
@@ -264,16 +275,6 @@ export class SignUpPage {
 
             await expect(tapNotif).toBeVisible({ timeout: 10000 });
             await tapNotif.check();
-        });
-    }
-
-    async tapSignupBtn() {
-        await test.step('User click sign up button', async () => {
-
-            const signUpBtn = this.locator.submitSignupBtn;
-
-            await expect(signUpBtn).toBeVisible({ timeout: 10000 });
-            await signUpBtn.click();
         });
     }
 

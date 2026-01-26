@@ -16,6 +16,14 @@ export class ReservePage {
             await expect(this.page).toHaveURL(/plans.html/);
         });
     }
+    
+    async verifyReservePage() {
+        await test.step('User verify reserve page', async () => {
+            
+            await expect(this.locator.headerReservePage).toBeVisible();
+            await expect(this.page).toHaveURL(/plans.html/);
+        });
+    }
 
     async tapReserveMenuBtn() {
         await test.step('User click reserve menu button', async () => {
@@ -77,7 +85,7 @@ export class ReservePage {
     }
 
     async tapPlanBeautySalon() {
-        await test.step('User click reserve room button plan business trip offer', async () => {
+        await test.step('User click reserve room button plan beauty salon offer', async () => {
 
             await expect(this.locator.withBeautySalonOfferBtn).toBeVisible();
 
@@ -94,7 +102,7 @@ export class ReservePage {
     }
 
     async tapPlanPrivateOnsen() {
-        await test.step('User click reserve room button plan business trip offer', async () => {
+        await test.step('User click reserve room button plan private onsen offer', async () => {
 
             await expect(this.locator.withPrivateOnsenOfferBtn).toBeVisible();
 
@@ -108,5 +116,39 @@ export class ReservePage {
         });
 
         return this.privateOnsenPage;
+    }
+
+    async tapPlanForHoneymoon() {
+        await test.step('User click reserve room button plan for honeymoon offer', async () => {
+
+            await expect(this.locator.forHoneymoonOfferBtn).toBeVisible();
+
+            const [popup] = await Promise.all([
+                this.page.waitForEvent('popup'),
+                this.locator.forHoneymoonOfferBtn.click()
+            ]);
+
+            await popup.waitForLoadState('domcontentloaded');
+            this.forHoneymoonPage = popup;
+        });
+
+        return this.forHoneymoonPage;
+    }
+
+    async tapPlanComplimentaryTicket() {
+        await test.step('User click reserve room button plan with complimentary ticket offer', async () => {
+
+            await expect(this.locator.complimentaryTicketOfferBtn).toBeVisible();
+
+            const [popup] = await Promise.all([
+                this.page.waitForEvent('popup'),
+                this.locator.complimentaryTicketOfferBtn.click()
+            ]);
+
+            await popup.waitForLoadState('domcontentloaded');
+            this.complimentaryTicketPage = popup;
+        });
+
+        return this.complimentaryTicketPage;
     }
 }

@@ -22,6 +22,17 @@ export class LoginPage {
         });
     }
 
+    async verifyLoginOage() {
+        await test.step('User verify login page', async () => {
+
+            const heading =
+                this.locator.headerLoginPage;
+
+            await expect(heading).toBeVisible();
+            await expect(this.page).toHaveURL(/login.html/);
+        });
+    }
+
     async tapLoginMenuBtn() {
         await test.step('User click login menu', async () => {
             await this.locator.loginMenuBtn.click();
@@ -45,9 +56,9 @@ export class LoginPage {
 
     async tapLoginBtn() {
         await test.step('User click login button', async () => {
-            
+
             const loginBtn = this.locator.loginBtn;
-            
+
             await expect(loginBtn).toBeVisible();
             await loginBtn.click({ timeout: 10000 });
         });
@@ -56,16 +67,11 @@ export class LoginPage {
     async verifyErrorMessage() {
         await test.step('User verify required field', async () => {
 
-            const isValidEmail = await this.locator.inputEmail.evaluate(
-                el => el.checkValidity()
-            );
+            await expect(this.locator.inputEmail)
+                .toHaveJSProperty('validity.valid', false);
 
-            const isValidPwd = await this.locator.inputPassword.evaluate(
-                el => el.checkValidity()
-            );
-
-            expect(isValidEmail).toBeFalsy();
-            expect(isValidPwd).toBe(false);
+            await expect(this.locator.inputPassword)
+                .toHaveJSProperty('validity.valid', false);
         });
     }
 

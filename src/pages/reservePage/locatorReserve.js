@@ -7,7 +7,7 @@ export class ReserveLocator {
         this.businessTripOfferBtn = page.locator('a[href="./reserve.html?plan-id=5"]');
         this.withBeautySalonOfferBtn = page.locator('a[href="./reserve.html?plan-id=6"]');
         this.withPrivateOnsenOfferBtn = page.locator('a[href="./reserve.html?plan-id=7"]');
-        this.forHoneyMoonOfferBtn = page.locator('a[href="./reserve.html?plan-id=8"]');
-        this.withComplimentaryTicketOfferBtn = page.locator('a[href="./reserve.html?plan-id=9"]');
+        this.forHoneymoonOfferBtn = page.locator('a[href="./reserve.html?plan-id=8"]');
+        this.complimentaryTicketOfferBtn = page.locator('a[href="./reserve.html?plan-id=9"]');
     }
 }

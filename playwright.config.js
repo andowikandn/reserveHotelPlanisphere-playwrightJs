@@ -12,7 +12,7 @@ export default defineConfig({
     headless: true,
     viewport: null,
     launchOptions: {
-      args: ['--start-maximized'],
+      args: ['--no-sandbox'],
       trace: 'on-first-retry',
       slowMo: 0,
     }
