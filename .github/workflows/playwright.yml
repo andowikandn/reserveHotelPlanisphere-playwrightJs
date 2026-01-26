@@ -76,7 +76,7 @@ jobs:
     name: CD - Deploy Playwright Report to GitHub Pages
     needs: ci-test
     runs-on: ubuntu-latest
-    
+
     # if: github.ref == 'refs/heads/main'
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
@@ -89,8 +89,6 @@ jobs:
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
