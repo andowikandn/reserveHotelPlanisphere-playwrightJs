@@ -76,7 +76,9 @@ jobs:
     name: CD - Deploy Playwright Report to GitHub Pages
     needs: ci-test
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    
+    # if: github.ref == 'refs/heads/main'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
     steps:
       - name: Download report artifact
