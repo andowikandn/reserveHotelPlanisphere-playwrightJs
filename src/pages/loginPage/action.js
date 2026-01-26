@@ -67,6 +67,12 @@ export class LoginPage {
     async verifyErrorMessage() {
         await test.step('User verify required field', async () => {
 
+            await this.locator.inputEmail.focus();
+            await this.locator.inputEmail.blur();
+
+            await this.locator.inputPassword.focus();
+            await this.locator.inputPassword.blur();
+
             await expect(this.locator.inputEmail)
                 .toHaveJSProperty('validity.valid', false);
 
