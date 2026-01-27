@@ -174,7 +174,7 @@ export class PlanForHoneymoonOfferPage {
     }
 
     async backToMainPage(mainPage) {
-        await test.step('User move tab for honeymoon offer window', async () => {
+        await test.step('User move tab main page offer window', async () => {
 
             await this.page.close();
             await mainPage.bringToFront();
@@ -216,7 +216,7 @@ export class PlanForHoneymoonOfferPage {
     }
 
     async verifyConfirmationForHoneymoonOffer() {
-        await test.step('User verify confirmation plan private onsen offers', async () => {
+        await test.step('User verify confirmation plan for honeymoon offer', async () => {
 
             const confirmForHoneymoon = this.locator.headerConfirmForHoneymoon;
 

@@ -3,6 +3,9 @@ export class ReserveLocator {
         this.reserveMenuBtn = page.locator('a[href="./plans.html"]');
         this.headerReservePage = page.locator('h2:has-text("Plans")');
         this.specialOfferBtn = page.locator('a[href="./reserve.html?plan-id=0"]');
+        this.premiumPlanOfferBtn = page.locator('a[href="./reserve.html?plan-id=1"]');
+        this.withDinnerOfferBtn = page.locator('a[href="./reserve.html?plan-id=2"]');
+        this.economicalOfferBtn = page.locator('a[href="./reserve.html?plan-id=3"]');
         this.stayWithoutMealsOfferBtn = page.locator('a[href="./reserve.html?plan-id=4"]');
         this.businessTripOfferBtn = page.locator('a[href="./reserve.html?plan-id=5"]');
         this.withBeautySalonOfferBtn = page.locator('a[href="./reserve.html?plan-id=6"]');

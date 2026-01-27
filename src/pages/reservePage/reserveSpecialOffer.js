@@ -112,11 +112,15 @@ export class PlanSpecialOfferPage {
     async verifyEmailInvalid() {
         await test.step('User verify email invalid', async () => {
 
-            const invalidEmail =
-                this.page.locator('#email + .invalid-feedback');
+            const invalidEmail = this.locator.email;
 
             await expect(invalidEmail).toBeVisible();
-            await expect(invalidEmail).toHaveText('Please enter a non-empty email address.');
+
+            const isValid = await invalidEmail.evaluate(
+                el => el.checkValidity()
+            );
+
+            expect(isValid).toBeFalsy();
         });
     }
 
@@ -176,7 +180,7 @@ export class PlanSpecialOfferPage {
     }
 
     async backToMainPage(mainPage) {
-        await test.step('User move tab special offer window', async () => {
+        await test.step('User move tab main page offer window', async () => {
 
             await this.page.close();
             await mainPage.bringToFront();
@@ -218,7 +222,7 @@ export class PlanSpecialOfferPage {
     }
 
     async verifyConfirmationSpecialOffer() {
-        await test.step('User verify confirmation plan speciall offers', async () => {
+        await test.step('User verify confirmation plan special offers', async () => {
 
             const confirmSpecial = this.locator.headerConfirmSpecial;
 

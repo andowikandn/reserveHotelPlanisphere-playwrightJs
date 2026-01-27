@@ -22,7 +22,7 @@ export class LoginPage {
         });
     }
 
-    async verifyLoginOage() {
+    async verifyLoginPage() {
         await test.step('User verify login page', async () => {
 
             const heading =
@@ -66,12 +66,14 @@ export class LoginPage {
 
     async verifyErrorMessage() {
         await test.step('User verify required field', async () => {
+            
+            await expect(this.locator.inputEmail).toBeVisible();
+            await this.locator.inputEmail.fill('');
 
-            await this.locator.inputEmail.focus();
-            await this.locator.inputEmail.blur();
+            await expect(this.locator.inputPassword).toBeVisible();
+            await this.locator.inputPassword.fill('');
 
-            await this.locator.inputPassword.focus();
-            await this.locator.inputPassword.blur();
+            await this.tapLoginBtn();
 
             await expect(this.locator.inputEmail)
                 .toHaveJSProperty('validity.valid', false);

@@ -174,7 +174,7 @@ export class PlanCompTicketOfferPage {
     }
 
     async backToMainPage(mainPage) {
-        await test.step('User move tab with complimentary ticket offer window', async () => {
+        await test.step('User move tab with main page offer window', async () => {
 
             await this.page.close();
             await mainPage.bringToFront();
@@ -216,7 +216,7 @@ export class PlanCompTicketOfferPage {
     }
 
     async verifyConfirmationCompTicketOffer() {
-        await test.step('User verify confirmation plan private onsen offers', async () => {
+        await test.step('User verify confirmation plan complimentary ticket offer', async () => {
 
             const confirmCompTicket = this.locator.headerConfirmCompTicket;
 

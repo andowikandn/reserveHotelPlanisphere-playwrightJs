@@ -174,7 +174,7 @@ export class PlanBusinessTripPage {
     }
 
     async backToMainPage() {
-        await test.step('User move tab special offer window', async () => {
+        await test.step('User move tab main page offer window', async () => {
 
             await this.page.bringToFront();
             await expect(this.locator.headerReservePage).toBeVisible();
@@ -213,7 +213,7 @@ export class PlanBusinessTripPage {
     }
 
     async verifyConfirmationBusinessTripOffer() {
-        await test.step('User verify confirmation plan speciall offers', async () => {
+        await test.step('User verify confirmation plan business trip offer', async () => {
 
             const confirmSpecial = this.locator.headerConfirmBusinessTrip;
 

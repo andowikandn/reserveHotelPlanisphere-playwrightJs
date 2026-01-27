@@ -110,12 +110,12 @@ export class PlanStayWitouthMealsPage {
         await test.step('User verify email invalid', async () => {
 
             const invalidEmail = this.locator.email;
-                // this.page.locator('#email + .invalid-feedback');
 
-            const isValid = await invalidEmail.evaluate(el => el.checkValidity());
+            const isValid = await invalidEmail.evaluate(
+                el => el.checkValidity()
+            );
+            
             expect(isValid).toBeFalsy();
-                // await expect(invalidEmail).toHaveText('Please enter a non-empty email address.');
-                // await expect(invalidEmail).toBeVisible();
         });
     }
 
@@ -175,7 +175,7 @@ export class PlanStayWitouthMealsPage {
     }
 
     async backToMainPage() {
-        await test.step('User move tab special offer window', async () => {
+        await test.step('User move tab main page offer window', async () => {
 
             await this.page.bringToFront();
             await expect(this.locator.headerReservePage).toBeVisible();
@@ -214,7 +214,7 @@ export class PlanStayWitouthMealsPage {
     }
 
     async verifyConfirmationStayWithoutMealsOffer() {
-        await test.step('User verify confirmation plan speciall offers', async () => {
+        await test.step('User verify confirmation plan stay without meals offers', async () => {
 
             const confirmSpecial = this.locator.headerConfirmStayWithoutMeals;
 

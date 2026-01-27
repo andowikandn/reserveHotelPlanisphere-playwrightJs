@@ -9,7 +9,6 @@ import { SignUpPage } from '../pages/signupPage/signup.js';
 import { LogoutPage } from '../pages/logoutPage/action.js';
 
 test.describe('Reserve for Honeymoon Page', () => {
-
     test('Plan for honeymoon page with contact by None', async ({ page }) => {
 
         const homePage = new HomePage(page);
@@ -62,7 +61,7 @@ test.describe('Reserve for Honeymoon Page', () => {
 
         await homePage.gotoHomeUrl();
         await loginPage.tapLoginMenuBtn();
-        await loginPage.verifyLoginOage();
+        await loginPage.verifyLoginPage();
         await loginPage.fillEmail(loginUser.validUserPremium.email);
         await loginPage.fillPassword(loginUser.validUserPremium.password);
         await loginPage.tapLoginBtn();

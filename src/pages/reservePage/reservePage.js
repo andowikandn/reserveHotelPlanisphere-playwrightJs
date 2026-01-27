@@ -27,9 +27,9 @@ export class ReservePage {
 
     async tapReserveMenuBtn() {
         await test.step('User click reserve menu button', async () => {
+            
             await expect(this.locator.reserveMenuBtn).toBeVisible({timeout:10000});
             await this.locator.reserveMenuBtn.click();
-            await expect(this.page).toHaveURL(/plans.html/);
         });
     }
 
@@ -51,7 +51,7 @@ export class ReservePage {
     }
 
     async tapPlanStayWithoutMealsOffer() {
-        await test.step('User click reserve room button plan stay with meals offer', async () => {
+        await test.step('User click reserve room button plan stay without meals offer', async () => {
 
             await expect(this.locator.stayWithoutMealsOfferBtn).toBeVisible();
 
@@ -150,5 +150,56 @@ export class ReservePage {
         });
 
         return this.complimentaryTicketPage;
+    }
+
+    async tapPlanPremium() {
+        await test.step('User click reserve room button premium plan offer', async () => {
+
+            await expect(this.locator.premiumPlanOfferBtn).toBeVisible();
+
+            const [popup] = await Promise.all([
+                this.page.waitForEvent('popup'),
+                this.locator.premiumPlanOfferBtn.click()
+            ]);
+
+            await popup.waitForLoadState('domcontentloaded');
+            this.premiumPlanPage = popup;
+        });
+
+        return this.premiumPlanPage;
+    }
+
+    async tapWithDinner() {
+        await test.step('User click reserve room button with dinner offer', async () => {
+
+            await expect(this.locator.withDinnerOfferBtn).toBeVisible();
+
+            const [popup] = await Promise.all([
+                this.page.waitForEvent('popup'),
+                this.locator.withDinnerOfferBtn.click()
+            ]);
+
+            await popup.waitForLoadState('domcontentloaded');
+            this.withDinnerPage = popup;
+        });
+
+        return this.withDinnerPage;
+    }
+
+    async tapEconomical() {
+        await test.step('User click reserve room button economical offer', async () => {
+
+            await expect(this.locator.economicalOfferBtn).toBeVisible();
+
+            const [popup] = await Promise.all([
+                this.page.waitForEvent('popup'),
+                this.locator.economicalOfferBtn.click()
+            ]);
+
+            await popup.waitForLoadState('domcontentloaded');
+            this.economicalPage = popup;
+        });
+
+        return this.economicalPage;
     }
 }

@@ -174,7 +174,7 @@ export class PlanPrivateOnsenOfferPage {
     }
 
     async backToMainPage(mainPage) {
-        await test.step('User move tab special offer window', async () => {
+        await test.step('User move tab main page offer window', async () => {
 
             await this.page.close();
             await mainPage.bringToFront();

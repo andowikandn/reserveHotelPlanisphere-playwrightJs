@@ -22,6 +22,28 @@ test.describe('Reserve Special Offer Test Back to Main Reserve Page', () => {
         
         const reserveSpecialPage2 = new PlanSpecialOfferPage(specialOfferPopup2);
         await reserveSpecialPage2.verifyTabSpecialOffer();
+
+        await reserveSpecialPage2.fillStay('2');
+        await reserveSpecialPage2.fillGuest('2');
+        await reserveSpecialPage2.additionalPlan(['Breakfast','Sightseeing']);
+        await reserveSpecialPage2.tapConfirmReserveBtn();
+        await reserveSpecialPage2.verifyUsernameRequired();
+        await reserveSpecialPage2.verifyConfirmationRequired();
+        await reserveSpecialPage2.fillName('Bram');
+        await reserveSpecialPage2.fillConfirmationContact('email');
+        await reserveSpecialPage2.tapConfirmReserveBtn();
+        await reserveSpecialPage2.verifyEmailRequired();
+        await reserveSpecialPage2.fillComment('The comment');
+        await reserveSpecialPage2.fillEmail('halo.com');
+        await reserveSpecialPage2.tapConfirmReserveBtn();
+        await reserveSpecialPage2.verifyEmailInvalid();
+        await reserveSpecialPage2.fillEmail('halo.@mail.com');
+        await reserveSpecialPage2.verifyEmailValid();
+        await reserveSpecialPage2.tapConfirmReserveBtn();
+        await reserveSpecialPage2.verifyConfirmationSpecialOffer();
+        await reserveSpecialPage2.tapSubmitReservationBtn();
+        await reserveSpecialPage2.verifySubmitReservation();
+        await reserveSpecialPage2.tapCloseBtn();
     });
 
     test('Plan special offer page with contact by None', async ({ page }) => {
