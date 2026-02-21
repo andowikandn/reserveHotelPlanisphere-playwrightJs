@@ -9,7 +9,7 @@ export default defineConfig({
   workers: 1,
   reporter: [['list'], ['html', { outputFolder: 'playwright-report' }]],
   use: {
-    headless: false,
+    headless: true,
     viewport: null,
     launchOptions: {
       args: ['--no-sandbox'],
