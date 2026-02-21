@@ -5,6 +5,7 @@ import { loginUser } from '../data/login/login.js';
 import { HomePage } from '../pages/homePage/action.js';
 import { ReservePage } from '../pages/reservePage/reservePage.js';
 import { LogoutPage } from '../pages/logoutPage/action.js'
+import { reserveForm } from '../data/reserve/reserve.js';
 
 test.describe('Reserve Economical Page', () => {
     test('Economical page with contact by None', async ({ page }) => {
@@ -40,15 +41,19 @@ test.describe('Reserve Economical Page', () => {
         const reserveEconomicalPage2 = new PlanEconomicalPage(economicalPopup2);
         await reserveEconomicalPage2.verifyTabEconomicalOffer();
         
-        await reserveEconomicalPage2.fillStay('2');
-        await reserveEconomicalPage2.fillGuest('2');
-        await reserveEconomicalPage2.additionalPlan(['Breakfast','Early check-in', 'Sightseeing']);
-        await reserveEconomicalPage2.fillName('Bram');
-        await reserveEconomicalPage2.fillConfirmationContact('no');
-        await reserveEconomicalPage2.fillComment('The comment');
+        await reserveEconomicalPage2.fillStay(reserveForm.stay);
+        await reserveEconomicalPage2.fillGuest(reserveForm.guest);
+        await reserveEconomicalPage2.additionalPlan([
+            reserveForm.plans.breakfast,
+            reserveForm.plans.earlyCheckIn,
+            reserveForm.plans.sightseeing
+        ]);
+        await reserveEconomicalPage2.fillName(reserveForm.name);
+        await reserveEconomicalPage2.fillConfirmationContact(reserveForm.contact.byNone);
+        await reserveEconomicalPage2.fillComment(reserveForm.comment);
         await reserveEconomicalPage2.tapConfirmReserveBtn();
 
-        await reserveEconomicalPage2.verifyConfirmationEconimicalOffer();
+        await reserveEconomicalPage2.verifyConfirmationEconomicalOffer();
         await reserveEconomicalPage2.tapSubmitReservationBtn();
         await reserveEconomicalPage2.verifySubmitReservation();
         await reserveEconomicalPage2.tapCloseBtn();
@@ -89,15 +94,19 @@ test.describe('Reserve Economical Page', () => {
         const reserveEconomicalPage2 = new PlanEconomicalPage(economicalPopup2);
         await reserveEconomicalPage2.verifyTabEconomicalOffer();
         
-        await reserveEconomicalPage2.fillStay('2');
-        await reserveEconomicalPage2.fillGuest('2');
-        await reserveEconomicalPage2.additionalPlan(['Breakfast','Early check-in', 'Sightseeing']);
-        await reserveEconomicalPage2.fillName('Bram');
-        await reserveEconomicalPage2.fillConfirmationContact('email');
-        await reserveEconomicalPage2.fillComment('The comment');
+        await reserveEconomicalPage2.fillStay(reserveForm.stay);
+        await reserveEconomicalPage2.fillGuest(reserveForm.guest);
+        await reserveEconomicalPage2.additionalPlan([
+            reserveForm.plans.breakfast,
+            reserveForm.plans.earlyCheckIn,
+            reserveForm.plans.sightseeing
+        ]);
+        await reserveEconomicalPage2.fillName(reserveForm.name);
+        await reserveEconomicalPage2.fillConfirmationContact(reserveForm.contact.byEmail);
+        await reserveEconomicalPage2.fillComment(reserveForm.comment);
         await reserveEconomicalPage2.tapConfirmReserveBtn();
 
-        await reserveEconomicalPage2.verifyConfirmationEconimicalOffer();
+        await reserveEconomicalPage2.verifyConfirmationEconomicalOffer();
         await reserveEconomicalPage2.tapSubmitReservationBtn();
         await reserveEconomicalPage2.verifySubmitReservation();
         await reserveEconomicalPage2.tapCloseBtn();
@@ -138,15 +147,19 @@ test.describe('Reserve Economical Page', () => {
         const reserveEconomicalPage2 = new PlanEconomicalPage(economicalPopup2);
         await reserveEconomicalPage2.verifyTabEconomicalOffer();
         
-        await reserveEconomicalPage2.fillStay('2');
-        await reserveEconomicalPage2.fillGuest('2');
-        await reserveEconomicalPage2.additionalPlan(['Breakfast','Early check-in', 'Sightseeing']);
-        await reserveEconomicalPage2.fillName('Bram');
-        await reserveEconomicalPage2.fillConfirmationContact('tel');
-        await reserveEconomicalPage2.fillComment('The comment');
+        await reserveEconomicalPage2.fillStay(reserveForm.stay);
+        await reserveEconomicalPage2.fillGuest(reserveForm.guest);
+        await reserveEconomicalPage2.additionalPlan([
+            reserveForm.plans.breakfast,
+            reserveForm.plans.earlyCheckIn,
+            reserveForm.plans.sightseeing
+        ]);
+        await reserveEconomicalPage2.fillName(reserveForm.name);
+        await reserveEconomicalPage2.fillConfirmationContact(reserveForm.contact.byTelephone);
+        await reserveEconomicalPage2.fillComment(reserveForm.comment);
         await reserveEconomicalPage2.tapConfirmReserveBtn();
 
-        await reserveEconomicalPage2.verifyConfirmationEconimicalOffer();
+        await reserveEconomicalPage2.verifyConfirmationEconomicalOffer();
         await reserveEconomicalPage2.tapSubmitReservationBtn();
         await reserveEconomicalPage2.verifySubmitReservation();
         await reserveEconomicalPage2.tapCloseBtn();

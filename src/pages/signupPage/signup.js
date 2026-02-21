@@ -20,8 +20,8 @@ export class SignUpPage {
 
     async verifySignupPage() {
         await test.step('User verify signup page', async () => {
-            
-            const heading = 
+
+            const heading =
                 this.locator.headerSignup;
 
             await expect(heading).toBeVisible();

@@ -3,6 +3,7 @@ import { SignUpPage } from '../pages/signupPage/signup.js';
 import { signupUser } from '../data/signup/signup.js';
 import { PlanSpecialOfferPage } from '../pages/reservePage/reserveSpecialOffer.js';
 import { ReservePage } from '../pages/reservePage/reservePage.js';
+import { reserveForm } from '../data/reserve/reserve.js';
 
 test.describe('SignUp Page Validation Required and Invalid Field',() => {    
     test('User signup with required field error message', async ({ page }) => {
@@ -96,12 +97,16 @@ test.describe('SignUp Page Filling Out Signup Success MyPage',() => {
         const reserveSpecialPage = new PlanSpecialOfferPage(specialOfferPopup);
 
         await reserveSpecialPage.verifyTabSpecialOffer();
-        await reserveSpecialPage.fillStay('2');
-        await reserveSpecialPage.fillGuest('2');
-        await reserveSpecialPage.additionalPlan(['Breakfast','Sightseeing']);
-        await reserveSpecialPage.fillName('Bram');
-        await reserveSpecialPage.fillConfirmationContact('tel');
-        await reserveSpecialPage.fillComment('The comment');
+        await reserveSpecialPage.fillStay(reserveForm.stay);
+        await reserveSpecialPage.fillGuest(reserveForm.guest);
+        await reserveSpecialPage.additionalPlan([
+            reserveForm.plans.breakfast,
+            reserveForm.plans.earlyCheckIn,
+            reserveForm.plans.sightseeing
+        ]);
+        await reserveSpecialPage.fillName(reserveForm.name);
+        await reserveSpecialPage.fillConfirmationContact(reserveForm.contact.byTelephone);
+        await reserveSpecialPage.fillComment(reserveForm.comment);
         await reserveSpecialPage.tapConfirmReserveBtn();
         
         await reserveSpecialPage.verifyConfirmationSpecialOffer();

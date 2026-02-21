@@ -28,19 +28,25 @@ export class ReservePage {
     async tapReserveMenuBtn() {
         await test.step('User click reserve menu button', async () => {
             
-            await expect(this.locator.reserveMenuBtn).toBeVisible({timeout:10000});
-            await this.locator.reserveMenuBtn.click();
+            const reserveMenuBtn = 
+                this.locator.reserveMenuBtn;
+                
+            await expect(reserveMenuBtn).toBeVisible({timeout:10000});
+            await reserveMenuBtn.click();
         });
     }
 
     async tapPlanSpecialOffer() {
         await test.step('User click reserve room button plan special offer', async () => {
             
-            await expect(this.locator.specialOfferBtn).toBeVisible();
+            const specialBtn =
+                this.locator.specialOfferBtn;
+    
+            await expect(specialBtn).toBeVisible();
 
             const [popup] = await Promise.all([
                 this.page.waitForEvent('popup'),
-                this.locator.specialOfferBtn.click()
+                specialBtn.click()
             ]);
 
             await popup.waitForLoadState('domcontentloaded');
@@ -53,11 +59,14 @@ export class ReservePage {
     async tapPlanStayWithoutMealsOffer() {
         await test.step('User click reserve room button plan stay without meals offer', async () => {
 
-            await expect(this.locator.stayWithoutMealsOfferBtn).toBeVisible();
+            const stayWithoutMealsBtn = 
+                this.locator.stayWithoutMealsOfferBtn
+            
+            await expect(stayWithoutMealsBtn).toBeVisible();
 
             const [popup] = await Promise.all([
                 this.page.waitForEvent('popup'),
-                this.locator.stayWithoutMealsOfferBtn.click()
+                stayWithoutMealsBtn.click()
             ]);
 
             await popup.waitForLoadState('domcontentloaded');
@@ -70,11 +79,14 @@ export class ReservePage {
     async tapPlanBusinessTrip() {
         await test.step('User click reserve room button plan business trip offer', async () => {
 
-            await expect(this.locator.businessTripOfferBtn).toBeVisible();
+            const businessTripBtn = 
+                this.locator.businessTripOfferBtn;
+
+            await expect(businessTripBtn).toBeVisible();
 
             const [popup] = await Promise.all([
                 this.page.waitForEvent('popup'),
-                this.locator.businessTripOfferBtn.click()
+                businessTripBtn.click()
             ]);
 
             await popup.waitForLoadState('domcontentloaded');
@@ -87,11 +99,14 @@ export class ReservePage {
     async tapPlanBeautySalon() {
         await test.step('User click reserve room button plan beauty salon offer', async () => {
 
-            await expect(this.locator.withBeautySalonOfferBtn).toBeVisible();
+            const withBeautySalonBtn = 
+                this.locator.withBeautySalonOfferBtn;
+
+            await expect(withBeautySalonBtn).toBeVisible();
 
             const [popup] = await Promise.all([
                 this.page.waitForEvent('popup'),
-                this.locator.withBeautySalonOfferBtn.click()
+                withBeautySalonBtn.click()
             ]);
 
             await popup.waitForLoadState('domcontentloaded');
@@ -104,11 +119,14 @@ export class ReservePage {
     async tapPlanPrivateOnsen() {
         await test.step('User click reserve room button plan private onsen offer', async () => {
 
-            await expect(this.locator.withPrivateOnsenOfferBtn).toBeVisible();
+            const withPrivateOnsenBtn = 
+                this.locator.withPrivateOnsenOfferBtn;
+
+            await expect(withPrivateOnsenBtn).toBeVisible();
 
             const [popup] = await Promise.all([
                 this.page.waitForEvent('popup'),
-                this.locator.withPrivateOnsenOfferBtn.click()
+                withPrivateOnsenBtn.click()
             ]);
 
             await popup.waitForLoadState('domcontentloaded');
@@ -121,11 +139,14 @@ export class ReservePage {
     async tapPlanForHoneymoon() {
         await test.step('User click reserve room button plan for honeymoon offer', async () => {
 
-            await expect(this.locator.forHoneymoonOfferBtn).toBeVisible();
+            const forHoneymoonBtn = 
+                this.locator.forHoneymoonOfferBtn;
+
+            await expect(forHoneymoonBtn).toBeVisible();
 
             const [popup] = await Promise.all([
                 this.page.waitForEvent('popup'),
-                this.locator.forHoneymoonOfferBtn.click()
+                forHoneymoonBtn.click()
             ]);
 
             await popup.waitForLoadState('domcontentloaded');
@@ -138,11 +159,14 @@ export class ReservePage {
     async tapPlanComplimentaryTicket() {
         await test.step('User click reserve room button plan with complimentary ticket offer', async () => {
 
-            await expect(this.locator.complimentaryTicketOfferBtn).toBeVisible();
+            const complimentaryTicketBtn = 
+                this.locator.complimentaryTicketOfferBtn;
+
+            await expect(complimentaryTicketBtn).toBeVisible();
 
             const [popup] = await Promise.all([
                 this.page.waitForEvent('popup'),
-                this.locator.complimentaryTicketOfferBtn.click()
+                complimentaryTicketBtn.click()
             ]);
 
             await popup.waitForLoadState('domcontentloaded');
@@ -155,11 +179,14 @@ export class ReservePage {
     async tapPlanPremium() {
         await test.step('User click reserve room button premium plan offer', async () => {
 
-            await expect(this.locator.premiumPlanOfferBtn).toBeVisible();
+            const premiumPlanBtn = 
+                this.locator.premiumPlanOfferBtn;
+            
+            await expect(premiumPlanBtn).toBeVisible();
 
             const [popup] = await Promise.all([
                 this.page.waitForEvent('popup'),
-                this.locator.premiumPlanOfferBtn.click()
+                premiumPlanBtn.click()
             ]);
 
             await popup.waitForLoadState('domcontentloaded');
@@ -172,11 +199,14 @@ export class ReservePage {
     async tapWithDinner() {
         await test.step('User click reserve room button with dinner offer', async () => {
 
-            await expect(this.locator.withDinnerOfferBtn).toBeVisible();
+            const withDinnerBtn = 
+                this.locator.withDinnerOfferBtn;
+
+            await expect(withDinnerBtn).toBeVisible();
 
             const [popup] = await Promise.all([
                 this.page.waitForEvent('popup'),
-                this.locator.withDinnerOfferBtn.click()
+                withDinnerBtn.click()
             ]);
 
             await popup.waitForLoadState('domcontentloaded');
@@ -189,11 +219,14 @@ export class ReservePage {
     async tapEconomical() {
         await test.step('User click reserve room button economical offer', async () => {
 
-            await expect(this.locator.economicalOfferBtn).toBeVisible();
+            const economicalBtn = 
+                this.locator.economicalOfferBtn;
+            
+                await expect(economicalBtn).toBeVisible();
 
             const [popup] = await Promise.all([
                 this.page.waitForEvent('popup'),
-                this.locator.economicalOfferBtn.click()
+                economicalBtn.click()
             ]);
 
             await popup.waitForLoadState('domcontentloaded');

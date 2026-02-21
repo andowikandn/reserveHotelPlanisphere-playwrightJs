@@ -35,8 +35,9 @@ export class LoginPage {
 
     async tapLoginMenuBtn() {
         await test.step('User click login menu', async () => {
-            await this.locator.loginMenuBtn.click();
-            await expect(this.locator.loginMenuBtn).toBeVisible();
+            const loginBtn = this.locator.loginMenuBtn;
+            await loginBtn.click();
+            await expect(loginBtn).toBeVisible();
         });
     }
 

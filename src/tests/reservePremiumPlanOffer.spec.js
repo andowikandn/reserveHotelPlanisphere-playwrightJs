@@ -4,7 +4,8 @@ import { LoginPage } from '../pages/loginPage/action.js';
 import { loginUser } from '../data/login/login.js';
 import { HomePage } from '../pages/homePage/action.js';
 import { ReservePage } from '../pages/reservePage/reservePage.js';
-import { LogoutPage } from '../pages/logoutPage/action.js'
+import { LogoutPage } from '../pages/logoutPage/action.js';
+import { reserveForm } from '../data/reserve/reserve.js';
 
 test.describe('Reserve Premium Plan Page', () => {
     test('Premium plan page with conctact by None', async ({ page }) => {
@@ -29,12 +30,16 @@ test.describe('Reserve Premium Plan Page', () => {
         const reservePremiumPlanPage = new PremiumPlanOfferPage(premiumPlanPopup);
         
         await reservePremiumPlanPage.verifyTabPremiumPlanOffer();
-        await reservePremiumPlanPage.fillStay('2');
-        await reservePremiumPlanPage.fillGuest('2');
-        await reservePremiumPlanPage.additionalPlan(['Early check-in', 'Sightseeing']);
-        await reservePremiumPlanPage.fillName('Bram');
-        await reservePremiumPlanPage.fillConfirmationContact('no');
-        await reservePremiumPlanPage.fillComment('The comment');
+        await reservePremiumPlanPage.fillStay(reserveForm.stay);
+        await reservePremiumPlanPage.fillGuest(reserveForm.guest);
+        await reservePremiumPlanPage.additionalPlan([
+            reserveForm.plans.breakfast,
+            reserveForm.plans.earlyCheckIn,
+            reserveForm.plans.sightseeing
+        ]);
+        await reservePremiumPlanPage.fillName(reserveForm.name);
+        await reservePremiumPlanPage.fillConfirmationContact(reserveForm.contact.byNone);
+        await reservePremiumPlanPage.fillComment(reserveForm.comment);
         await reservePremiumPlanPage.tapConfirmReserveBtn();
 
         await reservePremiumPlanPage.verifyConfirmationPremiumPlanOffer();
@@ -77,12 +82,16 @@ test.describe('Reserve Premium Plan Page', () => {
         const reservePremiumPlanPage2 = new PremiumPlanOfferPage(premiumPlanPopup2);
         await reservePremiumPlanPage2.verifyTabPremiumPlanOffer();
         
-        await reservePremiumPlanPage2.fillStay('2');
-        await reservePremiumPlanPage2.fillGuest('2');
-        await reservePremiumPlanPage2.additionalPlan(['Early check-in', 'Breakfast']);
-        await reservePremiumPlanPage2.fillName('Bram');
-        await reservePremiumPlanPage2.fillConfirmationContact('email');
-        await reservePremiumPlanPage2.fillComment('The comment');
+        await reservePremiumPlanPage2.fillStay(reserveForm.stay);
+        await reservePremiumPlanPage2.fillGuest(reserveForm.guest);
+        await reservePremiumPlanPage2.additionalPlan([
+            reserveForm.plans.breakfast,
+            reserveForm.plans.earlyCheckIn,
+            reserveForm.plans.sightseeing
+        ]);
+        await reservePremiumPlanPage2.fillName(reserveForm.name);
+        await reservePremiumPlanPage2.fillConfirmationContact(reserveForm.contact.byEmail);
+        await reservePremiumPlanPage2.fillComment(reserveForm.comment);
         await reservePremiumPlanPage2.tapConfirmReserveBtn();
 
         await reservePremiumPlanPage2.verifyConfirmationPremiumPlanOffer();
@@ -125,12 +134,16 @@ test.describe('Reserve Premium Plan Page', () => {
         const reservePremiumPlanPage2 = new PremiumPlanOfferPage(premiumPlanPopup2);
         await reservePremiumPlanPage2.verifyTabPremiumPlanOffer();
         
-        await reservePremiumPlanPage2.fillStay('2');
-        await reservePremiumPlanPage2.fillGuest('2');
-        await reservePremiumPlanPage2.additionalPlan(['Sightseeing', 'Breakfast']);
-        await reservePremiumPlanPage2.fillName('Bram');
-        await reservePremiumPlanPage2.fillConfirmationContact('tel');
-        await reservePremiumPlanPage2.fillComment('The comment');
+        await reservePremiumPlanPage2.fillStay(reserveForm.stay);
+        await reservePremiumPlanPage2.fillGuest(reserveForm.guest);
+        await reservePremiumPlanPage2.additionalPlan([
+            reserveForm.plans.breakfast,
+            reserveForm.plans.earlyCheckIn,
+            reserveForm.plans.sightseeing
+        ]);
+        await reservePremiumPlanPage2.fillName(reserveForm.name);
+        await reservePremiumPlanPage2.fillConfirmationContact(reserveForm.contact.byTelephone);
+        await reservePremiumPlanPage2.fillComment(reserveForm.comment);
         await reservePremiumPlanPage2.tapConfirmReserveBtn();
 
         await reservePremiumPlanPage2.verifyConfirmationPremiumPlanOffer();

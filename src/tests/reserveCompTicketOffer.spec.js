@@ -7,6 +7,7 @@ import { ReservePage } from '../pages/reservePage/reservePage.js';
 import { signupUser } from '../data/signup/signup.js';
 import { SignUpPage } from '../pages/signupPage/signup.js';
 import { LogoutPage } from '../pages/logoutPage/action.js';
+import { reserveForm } from '../data/reserve/reserve.js';
 
 test.describe('Reserve With Complimentary Ticket Page', () => {
     test('Plan with complimetary ticket page with contact by None', async ({ page }) => {
@@ -38,12 +39,16 @@ test.describe('Reserve With Complimentary Ticket Page', () => {
         const reserveCompTicketPage = new PlanCompTicketOfferPage(compTicketPopup);
 
         await reserveCompTicketPage.verifyTabCompTicketOffer();
-        await reserveCompTicketPage.fillStay('2');
-        await reserveCompTicketPage.fillGuest('2');
-        await reserveCompTicketPage.additionalPlan(['Breakfast', 'Sightseeing']);
-        await reserveCompTicketPage.fillName('Bram');
-        await reserveCompTicketPage.fillConfirmationContact('no');
-        await reserveCompTicketPage.fillComment('The comment');
+        await reserveCompTicketPage.fillStay(reserveForm.stay);
+        await reserveCompTicketPage.fillGuest(reserveForm.guest);
+        await reserveCompTicketPage.additionalPlan([
+            reserveForm.plans.breakfast,
+            reserveForm.plans.earlyCheckIn,
+            reserveForm.plans.sightseeing
+        ]);
+        await reserveCompTicketPage.fillName(reserveForm.name);
+        await reserveCompTicketPage.fillConfirmationContact(reserveForm.contact.byNone);
+        await reserveCompTicketPage.fillComment(reserveForm.comment);
         await reserveCompTicketPage.tapConfirmReserveBtn();
 
         await reserveCompTicketPage.verifyConfirmationCompTicketOffer();
@@ -74,12 +79,16 @@ test.describe('Reserve With Complimentary Ticket Page', () => {
         const reserveCompTicketPage = new PlanCompTicketOfferPage(compTicketPopup);
     
         await reserveCompTicketPage.verifyTabCompTicketOffer();
-        await reserveCompTicketPage.fillStay('2');
-        await reserveCompTicketPage.fillGuest('2');
-        await reserveCompTicketPage.additionalPlan(['Early check-in', 'Sightseeing']);
-        await reserveCompTicketPage.fillName('Bram');
-        await reserveCompTicketPage.fillConfirmationContact('email');
-        await reserveCompTicketPage.fillComment('The comment');
+        await reserveCompTicketPage.fillStay(reserveForm.stay);
+        await reserveCompTicketPage.fillGuest(reserveForm.guest);
+        await reserveCompTicketPage.additionalPlan([
+            reserveForm.plans.breakfast,
+            reserveForm.plans.earlyCheckIn,
+            reserveForm.plans.sightseeing
+        ]);
+        await reserveCompTicketPage.fillName(reserveForm.name);
+        await reserveCompTicketPage.fillConfirmationContact(reserveForm.contact.byEmail);
+        await reserveCompTicketPage.fillComment(reserveForm.comment);
         await reserveCompTicketPage.tapConfirmReserveBtn();
 
         await reserveCompTicketPage.verifyConfirmationCompTicketOffer();
@@ -102,21 +111,25 @@ test.describe('Reserve With Complimentary Ticket Page', () => {
         const reserveCompTicketPage = new PlanCompTicketOfferPage(compTicketPopup);
     
         await reserveCompTicketPage.verifyTabCompTicketOffer();
-        await reserveCompTicketPage.fillStay('2');
-        await reserveCompTicketPage.fillGuest('2');
-        await reserveCompTicketPage.additionalPlan(['Breakfast', 'Sightseeing']);
+        await reserveCompTicketPage.fillStay(reserveForm.stay);
+        await reserveCompTicketPage.fillGuest(reserveForm.guest);
+        await reserveCompTicketPage.additionalPlan([
+            reserveForm.plans.breakfast,
+            reserveForm.plans.earlyCheckIn,
+            reserveForm.plans.sightseeing
+        ]);
         await reserveCompTicketPage.tapConfirmReserveBtn();
         await reserveCompTicketPage.verifyUsernameRequired();
         await reserveCompTicketPage.verifyConfirmationRequired();
-        await reserveCompTicketPage.fillName('Bram');
-        await reserveCompTicketPage.fillConfirmationContact('tel');
-        await reserveCompTicketPage.fillComment('The comment');
+        await reserveCompTicketPage.fillName(reserveForm.name);
+        await reserveCompTicketPage.fillConfirmationContact(reserveForm.contact.byTelephone);
+        await reserveCompTicketPage.fillComment(reserveForm.comment);
         await reserveCompTicketPage.tapConfirmReserveBtn();
         await reserveCompTicketPage.verifyTelRequired();
-        await reserveCompTicketPage.fillTelephone('12345');
+        await reserveCompTicketPage.fillTelephone(reserveForm.tel.invalid);
         await reserveCompTicketPage.verifyTelInvalid();
         await reserveCompTicketPage.tapConfirmReserveBtn();
-        await reserveCompTicketPage.fillTelephone('12345678901');
+        await reserveCompTicketPage.fillTelephone(reserveForm.tel.valid);
         await reserveCompTicketPage.verifyTelValid();
         await reserveCompTicketPage.tapConfirmReserveBtn();
 

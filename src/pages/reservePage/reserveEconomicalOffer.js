@@ -215,7 +215,7 @@ export class PlanEconomicalPage {
         });
     }
 
-    async verifyConfirmationEconimicalOffer() {
+    async verifyConfirmationEconomicalOffer() {
         await test.step('User verify confirmation plan econimical offer', async () => {
 
             const confirmEconomical = this.locator.headerEconomical;

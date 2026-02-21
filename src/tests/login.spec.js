@@ -4,6 +4,7 @@ import { loginUser } from '../data/login/login.js';
 import { LogoutPage } from '../pages/logoutPage/action.js';
 import { PlanStayWitouthMealsPage } from '../pages/reservePage/reserveStayNoMealsOffer.js';
 import { ReservePage } from '../pages/reservePage/reservePage.js';
+import { reserveForm } from '../data/reserve/reserve.js';
 
 test.describe('Login Page', () => {
     test('Login error required field', async ({ page }) => {
@@ -62,12 +63,16 @@ test.describe('Login Page', () => {
         const reserveStayWithoutMealsPage = new PlanStayWitouthMealsPage(stayWithoutMealsPopup);
 
         await reserveStayWithoutMealsPage.verifyTabStayWithoutMealsOffer();
-        await reserveStayWithoutMealsPage.fillStay('2');
-        await reserveStayWithoutMealsPage.fillGuest('2');
-        await reserveStayWithoutMealsPage.additionalPlan(['Early check-in','Sightseeing']);
-        await reserveStayWithoutMealsPage.fillName('Budi Pekerti');
-        await reserveStayWithoutMealsPage.fillConfirmationContact('email');
-        await reserveStayWithoutMealsPage.fillComment('The comment');
+        await reserveStayWithoutMealsPage.fillStay(reserveForm.stay);
+        await reserveStayWithoutMealsPage.fillGuest(reserveForm.guest);
+        await reserveStayWithoutMealsPage.additionalPlan([
+            reserveForm.plans.breakfast,
+            reserveForm.plans.earlyCheckIn,
+            reserveForm.plans.sightseeing
+        ]);
+        await reserveStayWithoutMealsPage.fillName(reserveForm.name);
+        await reserveStayWithoutMealsPage.fillConfirmationContact(reserveForm.contact.byEmail);
+        await reserveStayWithoutMealsPage.fillComment(reserveForm.comment);
         await reserveStayWithoutMealsPage.tapConfirmReserveBtn();
 
         await reserveStayWithoutMealsPage.verifyConfirmationStayWithoutMealsOffer();
@@ -91,12 +96,16 @@ test.describe('Login Page', () => {
         const reserveStayWithoutMealsPage = new PlanStayWitouthMealsPage(stayWithoutMealsPopup);
 
         await reserveStayWithoutMealsPage.verifyTabStayWithoutMealsOffer();
-        await reserveStayWithoutMealsPage.fillStay('2');
-        await reserveStayWithoutMealsPage.fillGuest('2');
-        await reserveStayWithoutMealsPage.additionalPlan(['Early check-in','Breakfast']);
-        await reserveStayWithoutMealsPage.fillName('Budi Pekerti');
-        await reserveStayWithoutMealsPage.fillConfirmationContact('tel');
-        await reserveStayWithoutMealsPage.fillComment('The comment');
+        await reserveStayWithoutMealsPage.fillStay(reserveForm.stay);
+        await reserveStayWithoutMealsPage.fillGuest(reserveForm.guest);
+        await reserveStayWithoutMealsPage.additionalPlan([
+            reserveForm.plans.breakfast,
+            reserveForm.plans.earlyCheckIn,
+            reserveForm.plans.sightseeing
+        ]);
+        await reserveStayWithoutMealsPage.fillName(reserveForm.name);
+        await reserveStayWithoutMealsPage.fillConfirmationContact(reserveForm.contact.byTelephone);
+        await reserveStayWithoutMealsPage.fillComment(reserveForm.comment);
         await reserveStayWithoutMealsPage.tapConfirmReserveBtn();
 
         await reserveStayWithoutMealsPage.verifyConfirmationStayWithoutMealsOffer();

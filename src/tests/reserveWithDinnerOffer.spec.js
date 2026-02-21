@@ -4,7 +4,8 @@ import { LoginPage } from '../pages/loginPage/action.js';
 import { loginUser } from '../data/login/login.js';
 import { HomePage } from '../pages/homePage/action.js';
 import { ReservePage } from '../pages/reservePage/reservePage.js';
-import { LogoutPage } from '../pages/logoutPage/action.js'
+import { LogoutPage } from '../pages/logoutPage/action.js';
+import { reserveForm } from '../data/reserve/reserve.js';
 
 test.describe('Reserve With Dinner Page', () => {
     test('With dinner page with contact by None', async ({ page }) => {
@@ -40,12 +41,16 @@ test.describe('Reserve With Dinner Page', () => {
         const reserveWithDinnerPage2 = new PlanWithDinnerPage(withDinnerPopup2);
         await reserveWithDinnerPage2.verifyTabWithDinnernOffer();
         
-        await reserveWithDinnerPage2.fillStay('2');
-        await reserveWithDinnerPage2.fillGuest('2');
-        await reserveWithDinnerPage2.additionalPlan(['Breakfast','Early check-in', 'Sightseeing']);
-        await reserveWithDinnerPage2.fillName('Bram');
-        await reserveWithDinnerPage2.fillConfirmationContact('no');
-        await reserveWithDinnerPage2.fillComment('The comment');
+        await reserveWithDinnerPage2.fillStay(reserveForm.stay);
+        await reserveWithDinnerPage2.fillGuest(reserveForm.guest);
+        await reserveWithDinnerPage2.additionalPlan([
+            reserveForm.plans.breakfast,
+            reserveForm.plans.earlyCheckIn,
+            reserveForm.plans.sightseeing
+        ]);
+        await reserveWithDinnerPage2.fillName(reserveForm.name);
+        await reserveWithDinnerPage2.fillConfirmationContact(reserveForm.contact.byNone);
+        await reserveWithDinnerPage2.fillComment(reserveForm.comment);
         await reserveWithDinnerPage2.tapConfirmReserveBtn();
 
         await reserveWithDinnerPage2.verifyConfirmationWithDinnerOffer();
@@ -88,12 +93,16 @@ test.describe('Reserve With Dinner Page', () => {
         const reserveWithDinnerPage2 = new PlanWithDinnerPage(withDinnerPopup2);
         await reserveWithDinnerPage2.verifyTabWithDinnernOffer();
         
-        await reserveWithDinnerPage2.fillStay('2');
-        await reserveWithDinnerPage2.fillGuest('2');
-        await reserveWithDinnerPage2.additionalPlan(['Breakfast','Early check-in', 'Sightseeing']);
-        await reserveWithDinnerPage2.fillName('Bram');
-        await reserveWithDinnerPage2.fillConfirmationContact('email');
-        await reserveWithDinnerPage2.fillComment('The comment');
+        await reserveWithDinnerPage2.fillStay(reserveForm.stay);
+        await reserveWithDinnerPage2.fillGuest(reserveForm.guest);
+        await reserveWithDinnerPage2.additionalPlan([
+            reserveForm.plans.breakfast,
+            reserveForm.plans.earlyCheckIn,
+            reserveForm.plans.sightseeing
+        ]);
+        await reserveWithDinnerPage2.fillName(reserveForm.name);
+        await reserveWithDinnerPage2.fillConfirmationContact(reserveForm.contact.byEmail);
+        await reserveWithDinnerPage2.fillComment(reserveForm.comment);
         await reserveWithDinnerPage2.tapConfirmReserveBtn();
 
         await reserveWithDinnerPage2.verifyConfirmationWithDinnerOffer();
@@ -136,12 +145,16 @@ test.describe('Reserve With Dinner Page', () => {
         const reserveWithDinnerPage2 = new PlanWithDinnerPage(withDinnerPopup2);
         await reserveWithDinnerPage2.verifyTabWithDinnernOffer();
         
-        await reserveWithDinnerPage2.fillStay('2');
-        await reserveWithDinnerPage2.fillGuest('2');
-        await reserveWithDinnerPage2.additionalPlan(['Breakfast','Early check-in', 'Sightseeing']);
-        await reserveWithDinnerPage2.fillName('Bram');
-        await reserveWithDinnerPage2.fillConfirmationContact('tel');
-        await reserveWithDinnerPage2.fillComment('The comment');
+        await reserveWithDinnerPage2.fillStay(reserveForm.stay);
+        await reserveWithDinnerPage2.fillGuest(reserveForm.guest);
+        await reserveWithDinnerPage2.additionalPlan([
+            reserveForm.plans.breakfast,
+            reserveForm.plans.earlyCheckIn,
+            reserveForm.plans.sightseeing
+        ]);
+        await reserveWithDinnerPage2.fillName(reserveForm.name);
+        await reserveWithDinnerPage2.fillConfirmationContact(reserveForm.contact.byTelephone);
+        await reserveWithDinnerPage2.fillComment(reserveForm.comment);
         await reserveWithDinnerPage2.tapConfirmReserveBtn();
 
         await reserveWithDinnerPage2.verifyConfirmationWithDinnerOffer();

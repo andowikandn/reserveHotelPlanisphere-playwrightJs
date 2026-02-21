@@ -5,6 +5,7 @@ import { LoginPage } from '../pages/loginPage/action.js';
 import { loginUser } from '../data/login/login.js';
 import { SignUpPage } from '../pages/signupPage/signup.js';
 import { signupUser } from '../data/signup/signup.js';
+import { reserveForm } from '../data/reserve/reserve.js';
 
 test.describe('Reserve Business Trip Page', async () => {
     test('Plan business trip offer with contact by None', async ({ page }) => {
@@ -23,12 +24,16 @@ test.describe('Reserve Business Trip Page', async () => {
         const reserveBusinessTripPage = new PlanBusinessTripPage(businessTripPopup);
 
         await reserveBusinessTripPage.verifyTabBusinessTripOffer();
-        await reserveBusinessTripPage.fillStay('2');
-        await reserveBusinessTripPage.fillGuest('2');
-        await reserveBusinessTripPage.additionalPlan(['Early check-in','Sightseeing']);
-        await reserveBusinessTripPage.fillName('Budi Pekerti');
-        await reserveBusinessTripPage.fillConfirmationContact('no');
-        await reserveBusinessTripPage.fillComment('The comment');
+        await reserveBusinessTripPage.fillStay(reserveForm.stay);
+        await reserveBusinessTripPage.fillGuest(reserveForm.guest);
+        await reserveBusinessTripPage.additionalPlan([
+            reserveForm.plans.breakfast,
+            reserveForm.plans.earlyCheckIn,
+            reserveForm.plans.sightseeing
+        ]);
+        await reserveBusinessTripPage.fillName(reserveForm.name);
+        await reserveBusinessTripPage.fillConfirmationContact(reserveForm.contact.byNone);
+        await reserveBusinessTripPage.fillComment(reserveForm.comment);
         await reserveBusinessTripPage.tapConfirmReserveBtn();
 
         await reserveBusinessTripPage.verifyConfirmationBusinessTripOffer();
@@ -62,12 +67,16 @@ test.describe('Reserve Business Trip Page', async () => {
         const reserveBusinessTripPage = new PlanBusinessTripPage(businessTripPopup);
 
         await reserveBusinessTripPage.verifyTabBusinessTripOffer();
-        await reserveBusinessTripPage.fillStay('2');
-        await reserveBusinessTripPage.fillGuest('2');
-        await reserveBusinessTripPage.additionalPlan(['Breakfast','Early check-in']);
-        await reserveBusinessTripPage.fillName('Budi Pekerti');
-        await reserveBusinessTripPage.fillConfirmationContact('email');
-        await reserveBusinessTripPage.fillComment('The comment');
+        await reserveBusinessTripPage.fillStay(reserveForm.stay);
+        await reserveBusinessTripPage.fillGuest(reserveForm.guest);
+        await reserveBusinessTripPage.additionalPlan([
+            reserveForm.plans.breakfast,
+            reserveForm.plans.earlyCheckIn,
+            reserveForm.plans.sightseeing
+        ]);
+        await reserveBusinessTripPage.fillName(reserveForm.name);
+        await reserveBusinessTripPage.fillConfirmationContact(reserveForm.contact.byEmail);
+        await reserveBusinessTripPage.fillComment(reserveForm.comment);
         await reserveBusinessTripPage.tapConfirmReserveBtn();
 
         await reserveBusinessTripPage.verifyConfirmationBusinessTripOffer();
@@ -85,27 +94,31 @@ test.describe('Reserve Business Trip Page', async () => {
         const reserveBusinessTripPage = new PlanBusinessTripPage(businessTripPopup);
 
         await reserveBusinessTripPage.verifyTabBusinessTripOffer();
-        await reserveBusinessTripPage.fillStay('4');
-        await reserveBusinessTripPage.fillGuest('2');
-        await reserveBusinessTripPage.additionalPlan(['Breakfast','Early check-in']);
+        await reserveBusinessTripPage.fillStay(reserveForm.stay);
+        await reserveBusinessTripPage.fillGuest(reserveForm.guest);
+        await reserveBusinessTripPage.additionalPlan([
+            reserveForm.plans.breakfast,
+            reserveForm.plans.earlyCheckIn,
+            reserveForm.plans.sightseeing
+        ]);
         await reserveBusinessTripPage.tapConfirmReserveBtn();
         await reserveBusinessTripPage.verifyUsernameRequired();
         await reserveBusinessTripPage.verifyConfirmationRequired();
-        await reserveBusinessTripPage.fillName('Ciplay GoGreen');
-        await reserveBusinessTripPage.fillConfirmationContact('tel');
-        await reserveBusinessTripPage.fillComment('The comment');
+        await reserveBusinessTripPage.fillName(reserveForm.name);
+        await reserveBusinessTripPage.fillConfirmationContact(reserveForm.contact.byTelephone);
+        await reserveBusinessTripPage.fillComment(reserveForm.comment);
         await reserveBusinessTripPage.tapConfirmReserveBtn();
         await reserveBusinessTripPage.verifyTelRequired();
-        await reserveBusinessTripPage.fillTelephone('12345');
+        await reserveBusinessTripPage.fillTelephone(reserveForm.tel.invalid);
         await reserveBusinessTripPage.verifyTelInvalid();
         await reserveBusinessTripPage.tapConfirmReserveBtn();
-        await reserveBusinessTripPage.fillTelephone('12345123450')
+        await reserveBusinessTripPage.fillTelephone(reserveForm.tel.valid)
         await reserveBusinessTripPage.verifyTelValid();
         await reserveBusinessTripPage.tapConfirmReserveBtn();
 
         await reserveBusinessTripPage.verifyConfirmationBusinessTripOffer();
         await reserveBusinessTripPage.tapSubmitReservationBtn();
         await reserveBusinessTripPage.verifySubmitReservation();
-        await reserveBusinessTripPage.tapCloseBtn();``
+        await reserveBusinessTripPage.tapCloseBtn();
     });
 })

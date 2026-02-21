@@ -9,12 +9,12 @@ export default defineConfig({
   workers: 1,
   reporter: [['list'], ['html', { outputFolder: 'playwright-report' }]],
   use: {
-    headless: true,
+    headless: false,
     viewport: null,
     launchOptions: {
       args: ['--no-sandbox'],
       trace: 'on-first-retry',
-      slowMo: 0,
+      slowMo: 50,
     }
   },
   projects: [
@@ -40,3 +40,5 @@ export default defineConfig({
     ]),
   ],
 });
+
+

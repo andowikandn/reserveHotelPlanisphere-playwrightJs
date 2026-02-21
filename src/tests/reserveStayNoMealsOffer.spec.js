@@ -1,6 +1,7 @@
 import { test } from '@playwright/test';
 import { PlanStayWitouthMealsPage } from '../pages/reservePage/reserveStayNoMealsOffer.js';
 import { ReservePage } from '../pages/reservePage/reservePage.js';
+import { reserveForm } from '../data/reserve/reserve.js';
 
 test.describe('Reserve Stay With Meals Page', () => {
     test('Plan stay with meals offer page with contact by None', async ({ page }) => {
@@ -12,15 +13,19 @@ test.describe('Reserve Stay With Meals Page', () => {
         const reserveStayWithoutMealsPage = new PlanStayWitouthMealsPage(stayWithoutMealsPopup);
 
         await reserveStayWithoutMealsPage.verifyTabStayWithoutMealsOffer();
-        await reserveStayWithoutMealsPage.fillStay('2');
-        await reserveStayWithoutMealsPage.fillGuest('2');
-        await reserveStayWithoutMealsPage.additionalPlan(['Breakfast','Sightseeing']);
+        await reserveStayWithoutMealsPage.fillStay(reserveForm.stay);
+        await reserveStayWithoutMealsPage.fillGuest(reserveForm.guest);
+        await reserveStayWithoutMealsPage.additionalPlan([
+            reserveForm.plans.breakfast,
+            reserveForm.plans.earlyCheckIn,
+            reserveForm.plans.sightseeing
+        ]);
         await reserveStayWithoutMealsPage.tapConfirmReserveBtn();
         await reserveStayWithoutMealsPage.verifyUsernameRequired();
         await reserveStayWithoutMealsPage.verifyConfirmationRequired();
-        await reserveStayWithoutMealsPage.fillName('Bram');
-        await reserveStayWithoutMealsPage.fillConfirmationContact('no');
-        await reserveStayWithoutMealsPage.fillComment('The comment');
+        await reserveStayWithoutMealsPage.fillName(reserveForm.name);
+        await reserveStayWithoutMealsPage.fillConfirmationContact(reserveForm.contact.byNone);
+        await reserveStayWithoutMealsPage.fillComment(reserveForm.comment);
         await reserveStayWithoutMealsPage.tapConfirmReserveBtn();
         
         await reserveStayWithoutMealsPage.verifyConfirmationStayWithoutMealsOffer();
@@ -38,21 +43,25 @@ test.describe('Reserve Stay With Meals Page', () => {
         const reserveStayWithoutMealsPage = new PlanStayWitouthMealsPage(stayWithoutMealsPopup);
 
         await reserveStayWithoutMealsPage.verifyTabStayWithoutMealsOffer();
-        await reserveStayWithoutMealsPage.fillStay('2');
-        await reserveStayWithoutMealsPage.fillGuest('2');
-        await reserveStayWithoutMealsPage.additionalPlan(['Breakfast','Sightseeing']);
+        await reserveStayWithoutMealsPage.fillStay(reserveForm.stay);
+        await reserveStayWithoutMealsPage.fillGuest(reserveForm.guest);
+        await reserveStayWithoutMealsPage.additionalPlan([
+            reserveForm.plans.breakfast,
+            reserveForm.plans.earlyCheckIn,
+            reserveForm.plans.sightseeing
+        ]);
         await reserveStayWithoutMealsPage.tapConfirmReserveBtn();
         await reserveStayWithoutMealsPage.verifyUsernameRequired();
         await reserveStayWithoutMealsPage.verifyConfirmationRequired();
-        await reserveStayWithoutMealsPage.fillName('Bram');
-        await reserveStayWithoutMealsPage.fillConfirmationContact('email');
+        await reserveStayWithoutMealsPage.fillName(reserveForm.name);
+        await reserveStayWithoutMealsPage.fillConfirmationContact(reserveForm.contact.byEmail);
         await reserveStayWithoutMealsPage.tapConfirmReserveBtn();
         await reserveStayWithoutMealsPage.verifyEmailRequired();
-        await reserveStayWithoutMealsPage.fillComment('The comment');
-        await reserveStayWithoutMealsPage.fillEmail('test.com');
+        await reserveStayWithoutMealsPage.fillComment(reserveForm.comment);
+        await reserveStayWithoutMealsPage.fillEmail(reserveForm.email.invalid);
         await reserveStayWithoutMealsPage.tapConfirmReserveBtn();
         await reserveStayWithoutMealsPage.verifyEmailInvalid();
-        await reserveStayWithoutMealsPage.fillEmail('test@mail.com');
+        await reserveStayWithoutMealsPage.fillEmail(reserveForm.email.valid);
         await reserveStayWithoutMealsPage.verifyEmailValid();
         await reserveStayWithoutMealsPage.tapConfirmReserveBtn();
         
@@ -71,23 +80,27 @@ test.describe('Reserve Stay With Meals Page', () => {
         const reserveStayWithoutMealsPage = new PlanStayWitouthMealsPage(stayWithoutMealsPopup);
 
         await reserveStayWithoutMealsPage.verifyTabStayWithoutMealsOffer();
-        await reserveStayWithoutMealsPage.fillStay('2');
-        await reserveStayWithoutMealsPage.fillGuest('2');
-        await reserveStayWithoutMealsPage.additionalPlan(['Breakfast','Sightseeing']);
+        await reserveStayWithoutMealsPage.fillStay(reserveForm.stay);
+        await reserveStayWithoutMealsPage.fillGuest(reserveForm.guest);
+        await reserveStayWithoutMealsPage.additionalPlan([
+            reserveForm.plans.breakfast,
+            reserveForm.plans.earlyCheckIn,
+            reserveForm.plans.sightseeing
+        ]);
         await reserveStayWithoutMealsPage.tapConfirmReserveBtn();
         await reserveStayWithoutMealsPage.verifyUsernameRequired();
         await reserveStayWithoutMealsPage.verifyConfirmationRequired();
-        await reserveStayWithoutMealsPage.fillName('Bram');
-        await reserveStayWithoutMealsPage.fillConfirmationContact('tel');
-        await reserveStayWithoutMealsPage.fillComment('The comment');
+        await reserveStayWithoutMealsPage.fillName(reserveForm.name);
+        await reserveStayWithoutMealsPage.fillConfirmationContact(reserveForm.contact.byTelephone);
+        await reserveStayWithoutMealsPage.fillComment(reserveForm.comment);
         await reserveStayWithoutMealsPage.tapConfirmReserveBtn();
         await reserveStayWithoutMealsPage.verifyTelRequired();
 
-        await reserveStayWithoutMealsPage.fillTelephone('12345');
+        await reserveStayWithoutMealsPage.fillTelephone(reserveForm.tel.invalid);
         await reserveStayWithoutMealsPage.verifyTelInvalid();
         await reserveStayWithoutMealsPage.tapConfirmReserveBtn();
 
-        await reserveStayWithoutMealsPage.fillTelephone('12345678901');
+        await reserveStayWithoutMealsPage.fillTelephone(reserveForm.tel.valid);
         await reserveStayWithoutMealsPage.verifyTelValid();
         await reserveStayWithoutMealsPage.tapConfirmReserveBtn();
         

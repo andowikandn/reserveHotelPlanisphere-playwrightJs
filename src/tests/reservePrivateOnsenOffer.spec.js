@@ -5,6 +5,7 @@ import { loginUser } from '../data/login/login.js';
 import { ReservePage } from '../pages/reservePage/reservePage.js';
 import { signupUser } from '../data/signup/signup.js';
 import { SignUpPage } from '../pages/signupPage/signup.js';
+import { reserveForm } from '../data/reserve/reserve.js';
 
 test.describe('Reserve with Private Onsen Page', () => {
     test('Plan with private onsen page with contact by None', async ({ page }) => {
@@ -23,12 +24,16 @@ test.describe('Reserve with Private Onsen Page', () => {
         const reservePrivateOnsenPage = new PlanPrivateOnsenOfferPage(privateOnsenPage);
 
         await reservePrivateOnsenPage.verifyTabPrivateOnsenOffer();
-        await reservePrivateOnsenPage.fillStay('2');
-        await reservePrivateOnsenPage.fillGuest('2');
-        await reservePrivateOnsenPage.additionalPlan(['Early check-in','Sightseeing']);
-        await reservePrivateOnsenPage.fillName('Budi Pekerti');
-        await reservePrivateOnsenPage.fillConfirmationContact('no');
-        await reservePrivateOnsenPage.fillComment('The comment');
+        await reservePrivateOnsenPage.fillStay(reserveForm.stay);
+        await reservePrivateOnsenPage.fillGuest(reserveForm.guest);
+        await reservePrivateOnsenPage.additionalPlan([
+            reserveForm.plans.breakfast,
+            reserveForm.plans.earlyCheckIn,
+            reserveForm.plans.sightseeing
+        ]);
+        await reservePrivateOnsenPage.fillName(reserveForm.name);
+        await reservePrivateOnsenPage.fillConfirmationContact(reserveForm.contact.byNone);
+        await reservePrivateOnsenPage.fillComment(reserveForm.comment);
         await reservePrivateOnsenPage.tapConfirmReserveBtn();
 
         await reservePrivateOnsenPage.verifyConfirmationPrivateOnsenOffer();
@@ -60,12 +65,16 @@ test.describe('Reserve with Private Onsen Page', () => {
         const reservePrivateOnsenPage = new PlanPrivateOnsenOfferPage(privateOnsenPopup);
 
         await reservePrivateOnsenPage.verifyTabPrivateOnsenOffer();
-        await reservePrivateOnsenPage.fillStay('2');
-        await reservePrivateOnsenPage.fillGuest('2');
-        await reservePrivateOnsenPage.additionalPlan(['Breakfast','Sightseeing']);
-        await reservePrivateOnsenPage.fillName('Bram');
-        await reservePrivateOnsenPage.fillConfirmationContact('email');
-        await reservePrivateOnsenPage.fillComment('The comment');
+        await reservePrivateOnsenPage.fillStay(reserveForm.stay);
+        await reservePrivateOnsenPage.fillGuest(reserveForm.guest);
+        await reservePrivateOnsenPage.additionalPlan([
+            reserveForm.plans.breakfast,
+            reserveForm.plans.earlyCheckIn,
+            reserveForm.plans.sightseeing
+        ]);
+        await reservePrivateOnsenPage.fillName(reserveForm.name);
+        await reservePrivateOnsenPage.fillConfirmationContact(reserveForm.contact.byEmail);
+        await reservePrivateOnsenPage.fillComment(reserveForm.comment);
         await reservePrivateOnsenPage.tapConfirmReserveBtn();
         
         await reservePrivateOnsenPage.verifyConfirmationPrivateOnsenOffer();
@@ -83,13 +92,17 @@ test.describe('Reserve with Private Onsen Page', () => {
         const reservePrivateOnsenPage = new PlanPrivateOnsenOfferPage(privateOnsenPopup);
 
         await reservePrivateOnsenPage.verifyTabPrivateOnsenOffer();
-        await reservePrivateOnsenPage.fillStay('2');
-        await reservePrivateOnsenPage.fillGuest('2');
-        await reservePrivateOnsenPage.additionalPlan(['Early check-in','Sightseeing']);
-        await reservePrivateOnsenPage.fillName('Bram');
-        await reservePrivateOnsenPage.fillConfirmationContact('tel');
-        await reservePrivateOnsenPage.fillTelephone('12345123450');
-        await reservePrivateOnsenPage.fillComment('The comment');
+        await reservePrivateOnsenPage.fillStay(reserveForm.stay);
+        await reservePrivateOnsenPage.fillGuest(reserveForm.guest);
+        await reservePrivateOnsenPage.additionalPlan([
+            reserveForm.plans.breakfast,
+            reserveForm.plans.earlyCheckIn,
+            reserveForm.plans.sightseeing
+        ]);
+        await reservePrivateOnsenPage.fillName(reserveForm.name);
+        await reservePrivateOnsenPage.fillConfirmationContact(reserveForm.contact.byTelephone);
+        await reservePrivateOnsenPage.fillTelephone(reserveForm.tel.valid);
+        await reservePrivateOnsenPage.fillComment(reserveForm.comment);
         await reservePrivateOnsenPage.tapConfirmReserveBtn();
         
         await reservePrivateOnsenPage.verifyConfirmationPrivateOnsenOffer();

@@ -1,6 +1,7 @@
 import { test } from '@playwright/test';
 import { PlanBeautySalonPage } from '../pages/reservePage/reserveBeautySalonOffer.js';
 import { ReservePage } from '../pages/reservePage/reservePage.js';
+import { reserveForm } from '../data/reserve/reserve.js';
 
 test.describe('Reserve Beauty Salon Page', () => {
     test('Plan stay with beauty salon page with contact by None', async ({ page }) => {
@@ -12,15 +13,19 @@ test.describe('Reserve Beauty Salon Page', () => {
         const reserveBeautySalonPage = new PlanBeautySalonPage(beautySalonPopup);
 
         await reserveBeautySalonPage.verifyTabBeautySalonOffer();
-        await reserveBeautySalonPage.fillStay('2');
-        await reserveBeautySalonPage.fillGuest('2');
-        await reserveBeautySalonPage.additionalPlan(['Breakfast','Sightseeing']);
+        await reserveBeautySalonPage.fillStay(reserveForm.stay);
+        await reserveBeautySalonPage.fillGuest(reserveForm.guest);
+        await reserveBeautySalonPage.additionalPlan([
+            reserveForm.plans.breakfast,
+            reserveForm.plans.earlyCheckIn,
+            reserveForm.plans.sightseeing
+        ]);
         await reserveBeautySalonPage.tapConfirmReserveBtn();
         await reserveBeautySalonPage.verifyUsernameRequired();
         await reserveBeautySalonPage.verifyConfirmationRequired();
-        await reserveBeautySalonPage.fillName('Bram');
-        await reserveBeautySalonPage.fillConfirmationContact('no');
-        await reserveBeautySalonPage.fillComment('The comment');
+        await reserveBeautySalonPage.fillName(reserveForm.name);
+        await reserveBeautySalonPage.fillConfirmationContact(reserveForm.contact.byNone);
+        await reserveBeautySalonPage.fillComment(reserveForm.comment);
         await reserveBeautySalonPage.tapConfirmReserveBtn();
         
         await reserveBeautySalonPage.verifyConfirmationBeautySalonOffer();
@@ -38,21 +43,25 @@ test.describe('Reserve Beauty Salon Page', () => {
         const reserveBeautySalonPage = new PlanBeautySalonPage(beautySalonPopup);
 
         await reserveBeautySalonPage.verifyTabBeautySalonOffer();
-        await reserveBeautySalonPage.fillStay('2');
-        await reserveBeautySalonPage.fillGuest('2');
-        await reserveBeautySalonPage.additionalPlan(['Breakfast','Sightseeing']);
+        await reserveBeautySalonPage.fillStay(reserveForm.stay);
+        await reserveBeautySalonPage.fillGuest(reserveForm.guest);
+        await reserveBeautySalonPage.additionalPlan([
+            reserveForm.plans.breakfast,
+            reserveForm.plans.earlyCheckIn,
+            reserveForm.plans.sightseeing
+        ]);
         await reserveBeautySalonPage.tapConfirmReserveBtn();
         await reserveBeautySalonPage.verifyUsernameRequired();
         await reserveBeautySalonPage.verifyConfirmationRequired();
-        await reserveBeautySalonPage.fillName('Bram');
-        await reserveBeautySalonPage.fillConfirmationContact('email');
+        await reserveBeautySalonPage.fillName(reserveForm.name);
+        await reserveBeautySalonPage.fillConfirmationContact(reserveForm.contact.byEmail);
         await reserveBeautySalonPage.tapConfirmReserveBtn();
         await reserveBeautySalonPage.verifyEmailRequired();
-        await reserveBeautySalonPage.fillComment('The comment');
-        await reserveBeautySalonPage.fillEmail('test.com');
+        await reserveBeautySalonPage.fillComment(reserveForm.comment);
+        await reserveBeautySalonPage.fillEmail(reserveForm.email.invalid);
         await reserveBeautySalonPage.tapConfirmReserveBtn();
         await reserveBeautySalonPage.verifyEmailInvalid();
-        await reserveBeautySalonPage.fillEmail('test@mail.com');
+        await reserveBeautySalonPage.fillEmail(reserveForm.email.valid);
         await reserveBeautySalonPage.verifyEmailValid();
         await reserveBeautySalonPage.tapConfirmReserveBtn();
         
@@ -71,23 +80,27 @@ test.describe('Reserve Beauty Salon Page', () => {
         const reserveBeautySalonPage = new PlanBeautySalonPage(beautySalonPopup);
 
         await reserveBeautySalonPage.verifyTabBeautySalonOffer();
-        await reserveBeautySalonPage.fillStay('2');
-        await reserveBeautySalonPage.fillGuest('2');
-        await reserveBeautySalonPage.additionalPlan(['Breakfast','Sightseeing']);
+        await reserveBeautySalonPage.fillStay(reserveForm.stay);
+        await reserveBeautySalonPage.fillGuest(reserveForm.guest);
+        await reserveBeautySalonPage.additionalPlan([
+            reserveForm.plans.breakfast,
+            reserveForm.plans.earlyCheckIn,
+            reserveForm.plans.sightseeing
+        ]);
         await reserveBeautySalonPage.tapConfirmReserveBtn();
         await reserveBeautySalonPage.verifyUsernameRequired();
         await reserveBeautySalonPage.verifyConfirmationRequired();
-        await reserveBeautySalonPage.fillName('Bram');
-        await reserveBeautySalonPage.fillConfirmationContact('tel');
-        await reserveBeautySalonPage.fillComment('The comment');
+        await reserveBeautySalonPage.fillName(reserveForm.name);
+        await reserveBeautySalonPage.fillConfirmationContact(reserveForm.contact.byTelephone);
+        await reserveBeautySalonPage.fillComment(reserveForm.comment);
         await reserveBeautySalonPage.tapConfirmReserveBtn();
         await reserveBeautySalonPage.verifyTelRequired();
 
-        await reserveBeautySalonPage.fillTelephone('12345');
+        await reserveBeautySalonPage.fillTelephone(reserveForm.tel.invalid);
         await reserveBeautySalonPage.verifyTelInvalid();
         await reserveBeautySalonPage.tapConfirmReserveBtn();
 
-        await reserveBeautySalonPage.fillTelephone('12345678901');
+        await reserveBeautySalonPage.fillTelephone(reserveForm.tel.valid);
         await reserveBeautySalonPage.verifyTelValid();
         await reserveBeautySalonPage.tapConfirmReserveBtn();
         

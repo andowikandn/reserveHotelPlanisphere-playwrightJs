@@ -7,6 +7,7 @@ import { ReservePage } from '../pages/reservePage/reservePage.js';
 import { signupUser } from '../data/signup/signup.js';
 import { SignUpPage } from '../pages/signupPage/signup.js';
 import { LogoutPage } from '../pages/logoutPage/action.js';
+import { reserveForm } from '../data/reserve/reserve.js';
 
 test.describe('Reserve for Honeymoon Page', () => {
     test('Plan for honeymoon page with contact by None', async ({ page }) => {
@@ -38,12 +39,16 @@ test.describe('Reserve for Honeymoon Page', () => {
         const reserveForHoneymoonPage = new PlanForHoneymoonOfferPage(forHoneymoonPopup);
 
         await reserveForHoneymoonPage.verifyTabForHoneymoonOffer();
-        await reserveForHoneymoonPage.fillStay('2');
-        await reserveForHoneymoonPage.fillGuest('2');
-        await reserveForHoneymoonPage.additionalPlan(['Breakfast', 'Sightseeing']);
-        await reserveForHoneymoonPage.fillName('Bram');
-        await reserveForHoneymoonPage.fillConfirmationContact('no');
-        await reserveForHoneymoonPage.fillComment('The comment');
+        await reserveForHoneymoonPage.fillStay(reserveForm.stay);
+        await reserveForHoneymoonPage.fillGuest(reserveForm.guest);
+        await reserveForHoneymoonPage.additionalPlan([
+            reserveForm.plans.breakfast,
+            reserveForm.plans.earlyCheckIn,
+            reserveForm.plans.sightseeing
+        ]);
+        await reserveForHoneymoonPage.fillName(reserveForm.name);
+        await reserveForHoneymoonPage.fillConfirmationContact(reserveForm.contact.byNone);
+        await reserveForHoneymoonPage.fillComment(reserveForm.comment);
         await reserveForHoneymoonPage.tapConfirmReserveBtn();
 
         await reserveForHoneymoonPage.verifyConfirmationForHoneymoonOffer();
@@ -75,12 +80,16 @@ test.describe('Reserve for Honeymoon Page', () => {
         await reserveForHoneymoonPage.verifyTabForHoneymoonOffer();
 
         await reserveForHoneymoonPage.verifyTabForHoneymoonOffer();
-        await reserveForHoneymoonPage.fillStay('2');
-        await reserveForHoneymoonPage.fillGuest('2');
-        await reserveForHoneymoonPage.additionalPlan(['Early check-in', 'Sightseeing']);
-        await reserveForHoneymoonPage.fillName('Bram');
-        await reserveForHoneymoonPage.fillConfirmationContact('email');
-        await reserveForHoneymoonPage.fillComment('The comment');
+        await reserveForHoneymoonPage.fillStay(reserveForm.stay);
+        await reserveForHoneymoonPage.fillGuest(reserveForm.guest);
+        await reserveForHoneymoonPage.additionalPlan([
+            reserveForm.plans.breakfast,
+            reserveForm.plans.earlyCheckIn,
+            reserveForm.plans.sightseeing
+        ]);
+        await reserveForHoneymoonPage.fillName(reserveForm.name);
+        await reserveForHoneymoonPage.fillConfirmationContact(reserveForm.contact.byEmail);
+        await reserveForHoneymoonPage.fillComment(reserveForm.comment);
         await reserveForHoneymoonPage.tapConfirmReserveBtn();
 
         await reserveForHoneymoonPage.verifyConfirmationForHoneymoonOffer();
@@ -103,21 +112,25 @@ test.describe('Reserve for Honeymoon Page', () => {
         const reserveForHoneymoonPage = new PlanForHoneymoonOfferPage(forHoneymoonPopup);
         
         await reserveForHoneymoonPage.verifyTabForHoneymoonOffer();
-        await reserveForHoneymoonPage.fillStay('2');
-        await reserveForHoneymoonPage.fillGuest('2');
-        await reserveForHoneymoonPage.additionalPlan(['Breakfast', 'Sightseeing']);
+        await reserveForHoneymoonPage.fillStay(reserveForm.stay);
+        await reserveForHoneymoonPage.fillGuest(reserveForm.guest);
+        await reserveForHoneymoonPage.additionalPlan([
+            reserveForm.plans.breakfast,
+            reserveForm.plans.earlyCheckIn,
+            reserveForm.plans.sightseeing
+        ]);
         await reserveForHoneymoonPage.tapConfirmReserveBtn();
         await reserveForHoneymoonPage.verifyUsernameRequired();
         await reserveForHoneymoonPage.verifyConfirmationRequired();
-        await reserveForHoneymoonPage.fillName('Bram');
-        await reserveForHoneymoonPage.fillConfirmationContact('tel');
-        await reserveForHoneymoonPage.fillComment('The comment');
+        await reserveForHoneymoonPage.fillName(reserveForm.name);
+        await reserveForHoneymoonPage.fillConfirmationContact(reserveForm.contact.byTelephone);
+        await reserveForHoneymoonPage.fillComment(reserveForm.comment);
         await reserveForHoneymoonPage.tapConfirmReserveBtn();
         await reserveForHoneymoonPage.verifyTelRequired();
-        await reserveForHoneymoonPage.fillTelephone('12345');
+        await reserveForHoneymoonPage.fillTelephone(reserveForm.tel.invalid);
         await reserveForHoneymoonPage.verifyTelInvalid();
         await reserveForHoneymoonPage.tapConfirmReserveBtn();
-        await reserveForHoneymoonPage.fillTelephone('12345678901');
+        await reserveForHoneymoonPage.fillTelephone(reserveForm.tel.valid);
         await reserveForHoneymoonPage.verifyTelValid();
         await reserveForHoneymoonPage.tapConfirmReserveBtn();
 
