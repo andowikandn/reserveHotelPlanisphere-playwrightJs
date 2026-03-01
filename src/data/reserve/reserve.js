@@ -9,7 +9,7 @@ export const reserveForm = {
         sightseeing: 'Sightseeing',
     },
 
-    name: 'Budi Pekert',
+    name: 'Budi Pekerti',
 
     contact: {
         byNone: 'no',
