@@ -15,5 +15,6 @@ export class SignupLocator {
         this.checkNotification = page.locator('#notification');
         this.submitSignupBtn = page.getByRole('button', { name: 'Sign up' });
         this.signupMyPage = page.getByRole('heading', { name: 'MyPage' });
+        this.deleteUser = page.locator('#delete-form');
     }
 }

@@ -292,4 +292,28 @@ export class SignUpPage {
             await expect(dateOfBirth).toBeVisible({ timeout: 10000 });
         });
     }
+
+    async tapDeleteUserAccept() {
+        await test.step('User click delete user on mypage', async () => {
+            this.page.once('dialog', async alert => {
+                console.log(alert.message());
+                await alert.accept();
+            });
+
+            await this.locator.deleteUser.click();
+            await expect(this.page).toHaveURL(/index.html/);
+        });
+    }
+
+    async tapDeleteUserDismiss() {
+        await test.step('User click delete user on mypage', async () => {
+            this.page.once('dialog', async alert => {
+                console.log(alert.message());
+                await alert.dismiss();
+            });
+
+            await this.locator.deleteUser.click();
+            await expect(this.page).toHaveURL(/mypage.html/);
+        });
+    }
 }

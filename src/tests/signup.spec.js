@@ -5,7 +5,7 @@ import { PlanSpecialOfferPage } from '../pages/reservePage/reserveSpecialOffer.j
 import { ReservePage } from '../pages/reservePage/reservePage.js';
 import { reserveForm } from '../data/reserve/reserve.js';
 
-test.describe('SignUp Page Validation Required and Invalid Field',() => {    
+test.describe('SignUp Page Validation Required and Invalid Field', () => {
     test('User signup with required field error message', async ({ page }) => {
 
         const action = new SignUpPage(page);
@@ -72,7 +72,7 @@ test.describe('SignUp Page Validation Required and Invalid Field',() => {
     });
 });
 
-test.describe('SignUp Page Filling Out Signup Success MyPage',() => {
+test.describe('SignUp Page Filling Out Signup Success MyPage', () => {
     test('User filling out signup field', async ({ page }) => {
 
         const action = new SignUpPage(page);
@@ -108,11 +108,52 @@ test.describe('SignUp Page Filling Out Signup Success MyPage',() => {
         await reserveSpecialPage.fillConfirmationContact(reserveForm.contact.byTelephone);
         await reserveSpecialPage.fillComment(reserveForm.comment);
         await reserveSpecialPage.tapConfirmReserveBtn();
-        
+
         await reserveSpecialPage.verifyConfirmationSpecialOffer();
         await reserveSpecialPage.tapSubmitReservationBtn();
         await reserveSpecialPage.verifySubmitReservation();
         await reserveSpecialPage.tapCloseBtn();
     });
+});
 
+test.describe('SignUp Page Signup Success MyPage then Delete User', () => {
+    test('User verify delete user dismiss after signup', async ({ page }) => {
+
+        const action = new SignUpPage(page);
+
+        await action.goto();
+        await action.fillEmail(signupUser.valid.email);
+        await action.fillPassword(signupUser.valid.password);
+        await action.fillPwdConfirm(signupUser.valid.pwdConfirm);
+        await action.fillName(signupUser.username.name);
+        await action.selectNormalMembership();
+        await action.fillAddress(signupUser.address.place);
+        await action.fillTel(signupUser.tel.valid);
+        await action.selectGender(signupUser.gender.selected);
+        await action.fillDateofBirth(signupUser.dateOfBirth.date);
+        await action.checkReceiveNotification();
+        await action.tapSignupBtn();
+        await action.verifySignupMyPage();
+        await action.tapDeleteUserDismiss();
+    });
+
+    test('User verify delete user accept after signup', async ({ page }) => {
+
+        const action = new SignUpPage(page);
+
+        await action.goto();
+        await action.fillEmail(signupUser.valid.email);
+        await action.fillPassword(signupUser.valid.password);
+        await action.fillPwdConfirm(signupUser.valid.pwdConfirm);
+        await action.fillName(signupUser.username.name);
+        await action.selectNormalMembership();
+        await action.fillAddress(signupUser.address.place);
+        await action.fillTel(signupUser.tel.valid);
+        await action.selectGender(signupUser.gender.selected);
+        await action.fillDateofBirth(signupUser.dateOfBirth.date);
+        await action.checkReceiveNotification();
+        await action.tapSignupBtn();
+        await action.verifySignupMyPage();
+        await action.tapDeleteUserAccept();
+    });
 });
