@@ -1,11 +1,11 @@
 import { test } from '@playwright/test';
-import { PlanBusinessTripPage } from '../pages/reservePage/reserveBusinessTripOffer.js';
-import { ReservePage } from '../pages/reservePage/reservePage';
-import { LoginPage } from '../pages/loginPage/action.js';
-import { loginUser } from '../data/login/login.js';
-import { SignUpPage } from '../pages/signupPage/signup.js';
-import { signupUser } from '../data/signup/signup.js';
-import { reserveForm } from '../data/reserve/reserve.js';
+import { PlanBusinessTripPage } from '../../pages/reservePage/businessTripPlan/reserveBusinessTripOffer.js';
+import { ReservePage } from '../../pages/reservePage/reserveMenu/reservePage.js';
+import { LoginPage } from '../../pages/loginPage/action.js';
+import { loginUser } from '../../data/login/login.js';
+import { SignUpPage } from '../../pages/signupPage/signup.js';
+import { signupUser } from '../../data/signup/signup.js';
+import { reserveForm } from '../../data/reserve/reserve.js';
 
 test.describe('Reserve Business Trip Page', async () => {
     test('Plan business trip offer with contact by None', async ({ page }) => {

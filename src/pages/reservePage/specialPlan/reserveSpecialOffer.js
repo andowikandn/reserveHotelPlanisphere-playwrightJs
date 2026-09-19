@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { ReserveSpecialLocator } from './locatorSpecialOffer.js';
-import { ReserveLocator } from './locatorReserve.js';
+import { ReserveSpecialLocator } from '../specialPlan/locatorSpecialOffer.js';
+import { ReserveLocator } from '../reserveMenu/locatorReserve.js';
 
 export class PlanSpecialOfferPage {
     constructor(page) {

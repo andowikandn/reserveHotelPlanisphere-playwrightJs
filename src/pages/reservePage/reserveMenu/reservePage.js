@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { ReserveLocator } from './locatorReserve.js';
-import { URLS } from '../../../utils/env.js';
+import { ReserveLocator } from '../reserveMenu/locatorReserve.js';
+import { URLS } from '../../../../utils/env.js';
 
 export class ReservePage {
     constructor(page) {

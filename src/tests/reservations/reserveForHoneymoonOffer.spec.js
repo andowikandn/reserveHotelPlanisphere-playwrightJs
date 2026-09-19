@@ -1,13 +1,13 @@
 import { test } from '@playwright/test';
-import { PlanForHoneymoonOfferPage } from '../pages/reservePage/reserveForHoneymoonOffer.js';
-import { LoginPage } from '../pages/loginPage/action.js';
-import { loginUser } from '../data/login/login.js';
-import { HomePage } from '../pages/homePage/action.js';
-import { ReservePage } from '../pages/reservePage/reservePage.js';
-import { signupUser } from '../data/signup/signup.js';
-import { SignUpPage } from '../pages/signupPage/signup.js';
-import { LogoutPage } from '../pages/logoutPage/action.js';
-import { reserveForm } from '../data/reserve/reserve.js';
+import { PlanForHoneymoonOfferPage } from '../../pages/reservePage/forHoneymoonPlan/reserveForHoneymoonOffer.js';
+import { LoginPage } from '../../pages/loginPage/action.js';
+import { loginUser } from '../../data/login/login.js';
+import { HomePage } from '../../pages/homePage/action.js';
+import { ReservePage } from '../../pages/reservePage/reserveMenu/reservePage.js';
+import { signupUser } from '../../data/signup/signup.js';
+import { SignUpPage } from '../../pages/signupPage/signup.js';
+import { LogoutPage } from '../../pages/logoutPage/action.js';
+import { reserveForm } from '../../data/reserve/reserve.js';
 
 test.describe('Reserve for Honeymoon Page', () => {
     test('Plan for honeymoon page with contact by None', async ({ page }) => {

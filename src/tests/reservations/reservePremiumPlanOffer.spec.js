@@ -1,11 +1,11 @@
 import { test } from '@playwright/test';
-import { PremiumPlanOfferPage } from '../pages/reservePage/reservePremiumPlanOffer.js';
-import { LoginPage } from '../pages/loginPage/action.js';
-import { loginUser } from '../data/login/login.js';
-import { HomePage } from '../pages/homePage/action.js';
-import { ReservePage } from '../pages/reservePage/reservePage.js';
-import { LogoutPage } from '../pages/logoutPage/action.js';
-import { reserveForm } from '../data/reserve/reserve.js';
+import { PremiumPlanOfferPage } from '../../pages/reservePage/premiumPlan/reservePremiumPlanOffer.js';
+import { LoginPage } from '../../pages/loginPage/action.js';
+import { loginUser } from '../../data/login/login.js';
+import { HomePage } from '../../pages/homePage/action.js';
+import { ReservePage } from '../../pages/reservePage/reserveMenu/reservePage.js';
+import { LogoutPage } from '../../pages/logoutPage/action.js';
+import { reserveForm } from '../../data/reserve/reserve.js';
 
 test.describe('Reserve Premium Plan Page', () => {
     test('Premium plan page with conctact by None', async ({ page }) => {

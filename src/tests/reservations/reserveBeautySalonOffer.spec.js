@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
-import { PlanBeautySalonPage } from '../pages/reservePage/reserveBeautySalonOffer.js';
-import { ReservePage } from '../pages/reservePage/reservePage.js';
-import { reserveForm } from '../data/reserve/reserve.js';
+import { PlanBeautySalonPage } from '../../pages/reservePage/beautySalonPlan/reserveBeautySalonOffer.js';
+import { ReservePage } from '../../pages/reservePage/reserveMenu/reservePage.js';
+import { reserveForm } from '../../data/reserve/reserve.js';
 
 test.describe('Reserve Beauty Salon Page', () => {
     test('Plan stay with beauty salon page with contact by None', async ({ page }) => {

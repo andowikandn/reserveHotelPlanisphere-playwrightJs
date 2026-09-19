@@ -1,11 +1,11 @@
 import { test } from '@playwright/test';
-import { PlanWithDinnerPage } from '../pages/reservePage/reserveWithDinnerOffer.js';
-import { LoginPage } from '../pages/loginPage/action.js';
-import { loginUser } from '../data/login/login.js';
-import { HomePage } from '../pages/homePage/action.js';
-import { ReservePage } from '../pages/reservePage/reservePage.js';
-import { LogoutPage } from '../pages/logoutPage/action.js';
-import { reserveForm } from '../data/reserve/reserve.js';
+import { PlanWithDinnerPage } from '../../pages/reservePage/withDinnerPlan/reserveWithDinnerOffer.js';
+import { LoginPage } from '../../pages/loginPage/action.js';
+import { loginUser } from '../../data/login/login.js';
+import { HomePage } from '../../pages/homePage/action.js';
+import { ReservePage } from '../../pages/reservePage/reserveMenu/reservePage.js';
+import { LogoutPage } from '../../pages/logoutPage/action.js';
+import { reserveForm } from '../../data/reserve/reserve.js';
 
 test.describe('Reserve With Dinner Page', () => {
     test('With dinner page with contact by None', async ({ page }) => {

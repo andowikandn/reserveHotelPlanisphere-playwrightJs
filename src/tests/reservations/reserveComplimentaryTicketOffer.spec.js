@@ -1,13 +1,13 @@
 import { test } from '@playwright/test';
-import { PlanCompTicketOfferPage } from '../pages/reservePage/reserveCompTicketOffer.js';
-import { LoginPage } from '../pages/loginPage/action.js';
-import { loginUser } from '../data/login/login.js';
-import { HomePage } from '../pages/homePage/action.js';
-import { ReservePage } from '../pages/reservePage/reservePage.js';
-import { signupUser } from '../data/signup/signup.js';
-import { SignUpPage } from '../pages/signupPage/signup.js';
-import { LogoutPage } from '../pages/logoutPage/action.js';
-import { reserveForm } from '../data/reserve/reserve.js';
+import { PlanCompTicketOfferPage } from '../../pages/reservePage/complimentaryTicketPlan/reserveCompTicketOffer.js';
+import { LoginPage } from '../../pages/loginPage/action.js';
+import { loginUser } from '../../data/login/login.js';
+import { HomePage } from '../../pages/homePage/action.js';
+import { ReservePage } from '../../pages/reservePage/reserveMenu/reservePage.js';
+import { signupUser } from '../../data/signup/signup.js';
+import { SignUpPage } from '../../pages/signupPage/signup.js';
+import { LogoutPage } from '../../pages/logoutPage/action.js';
+import { reserveForm } from '../../data/reserve/reserve.js';
 
 test.describe('Reserve With Complimentary Ticket Page', () => {
     test('Plan with complimetary ticket page with contact by None', async ({ page }) => {

@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
-import { PlanStayWitouthMealsPage } from '../pages/reservePage/reserveStayNoMealsOffer.js';
-import { ReservePage } from '../pages/reservePage/reservePage.js';
-import { reserveForm } from '../data/reserve/reserve.js';
+import { PlanStayWitouthMealsPage } from '../../pages/reservePage/stayNoMealsPlan/reserveStayNoMealsOffer.js';
+import { ReservePage } from '../../pages/reservePage/reserveMenu/reservePage.js';
+import { reserveForm } from '../../data/reserve/reserve.js';
 
 test.describe('Reserve Stay With Meals Page', () => {
     test('Plan stay with meals offer page with contact by None', async ({ page }) => {

@@ -69,7 +69,7 @@ export class LoginPage {
         await test.step('User verify required field', async () => {
             
             const email = this.locator.inputEmail;
-            await expect(email).toBeVisible();
+            await expect(email).toBeVisible({timeout: 2000});
             await email.fill('');
 
             const password = this.locator.inputPassword;

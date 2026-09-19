@@ -1,4 +1,4 @@
-export class ReserveCompTicketLocator {
+export class ReserveComplimentaryTicketLocator {
     constructor(page) {
         this.headerCompTicket = page.locator('h4:has-text("With complimentary ticket")');
         this.inputDate = page.locator('#date');

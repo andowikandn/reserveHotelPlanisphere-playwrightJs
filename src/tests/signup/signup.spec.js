@@ -1,9 +1,9 @@
 import { test } from '@playwright/test';
-import { SignUpPage } from '../pages/signupPage/signup.js';
-import { signupUser } from '../data/signup/signup.js';
-import { PlanSpecialOfferPage } from '../pages/reservePage/reserveSpecialOffer.js';
-import { ReservePage } from '../pages/reservePage/reservePage.js';
-import { reserveForm } from '../data/reserve/reserve.js';
+import { SignUpPage } from '../../pages/signupPage/signup.js';
+import { signupUser } from '../../data/signup/signup.js';
+import { PlanSpecialOfferPage } from '../../pages/reservePage/specialPlan/reserveSpecialOffer.js';
+import { ReservePage } from '../../pages/reservePage/reserveMenu/reservePage.js';
+import { reserveForm } from '../../data/reserve/reserve.js';
 
 test.describe('SignUp Page Validation Required and Invalid Field', () => {
     test('User signup with required field error message', async ({ page }) => {

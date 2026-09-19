@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
-import { PlanSpecialOfferPage } from '../pages/reservePage/reserveSpecialOffer.js';
-import { ReservePage } from '../pages/reservePage/reservePage.js';
-import { reserveForm } from '../data/reserve/reserve.js';
+import { PlanSpecialOfferPage } from '../../pages/reservePage/specialPlan/reserveSpecialOffer.js';
+import { ReservePage } from '../../pages/reservePage/reserveMenu/reservePage.js';
+import { reserveForm } from '../../data/reserve/reserve.js';
 
 test.describe('Reserve Special Offer Test Back to Main Reserve Page', () => {
     test('Plan special offer then click back to main reserve page contact by Email', async ({ page }) => {

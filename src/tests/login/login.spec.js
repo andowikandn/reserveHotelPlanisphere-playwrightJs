@@ -1,10 +1,10 @@
 import { test } from '@playwright/test';
-import { LoginPage } from '../pages/loginPage/action.js';
-import { loginUser } from '../data/login/login.js';
-import { LogoutPage } from '../pages/logoutPage/action.js';
-import { PlanStayWitouthMealsPage } from '../pages/reservePage/reserveStayNoMealsOffer.js';
-import { ReservePage } from '../pages/reservePage/reservePage.js';
-import { reserveForm } from '../data/reserve/reserve.js';
+import { LoginPage } from '../../pages/loginPage/action.js';
+import { loginUser } from '../../data/login/login.js';
+import { LogoutPage } from '../../pages/logoutPage/action.js';
+import { PlanStayWitouthMealsPage } from '../../pages/reservePage/stayNoMealsPlan/reserveStayNoMealsOffer.js';
+import { ReservePage } from '../../pages/reservePage/reserveMenu/reservePage.js';
+import { reserveForm } from '../../data/reserve/reserve.js';
 
 test.describe('Login Page', () => {
     test('Login error required field', async ({ page }) => {

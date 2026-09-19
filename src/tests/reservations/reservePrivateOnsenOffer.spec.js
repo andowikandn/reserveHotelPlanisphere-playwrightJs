@@ -1,11 +1,11 @@
 import { test } from '@playwright/test';
-import { PlanPrivateOnsenOfferPage } from '../pages/reservePage/reservePrivateOnsenOffer.js';
-import { LoginPage } from '../pages/loginPage/action.js';
-import { loginUser } from '../data/login/login.js';
-import { ReservePage } from '../pages/reservePage/reservePage.js';
-import { signupUser } from '../data/signup/signup.js';
-import { SignUpPage } from '../pages/signupPage/signup.js';
-import { reserveForm } from '../data/reserve/reserve.js';
+import { PlanPrivateOnsenOfferPage } from '../../pages/reservePage/privateOnsenPlan/reservePrivateOnsenOffer.js';
+import { LoginPage } from '../../pages/loginPage/action.js';
+import { loginUser } from '../../data/login/login.js';
+import { ReservePage } from '../../pages/reservePage/reserveMenu/reservePage.js';
+import { signupUser } from '../../data/signup/signup.js';
+import { SignUpPage } from '../../pages/signupPage/signup.js';
+import { reserveForm } from '../../data/reserve/reserve.js';
 
 test.describe('Reserve with Private Onsen Page', () => {
     test('Plan with private onsen page with contact by None', async ({ page }) => {

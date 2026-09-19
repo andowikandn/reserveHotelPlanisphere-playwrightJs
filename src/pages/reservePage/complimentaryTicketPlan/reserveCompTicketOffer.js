@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test';
-import { ReserveCompTicketLocator } from './locatorCompTicketOffer.js';
+import { ReserveComplimentaryTicketLocator } from './locatorComplimentaryTicketOffer.js';
 
 export class PlanCompTicketOfferPage {
     constructor(page) {
         this.page = page;
-        this.locator = new ReserveCompTicketLocator(page);
+        this.locator = new ReserveComplimentaryTicketLocator(page);
     }
 
     async verifyTabCompTicketOffer() {
